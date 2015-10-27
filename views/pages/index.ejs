@@ -3,18 +3,81 @@
 <head>
     <% include ../partials/head %>
 </head>
-<body class="container">
+<body>
 
     <header>
         <% include ../partials/header %>
     </header>
-
+<div class="container spacer">
     <main>
-        <div class="jumbotron">
-            <h1>This is great</h1>
-            <p>Welcome to templating using EJS</p>
-        </div>
+        <span class="beer-badge">All</span>
+        <span class="beer-badge">Ambers/Pales</span>
+        <span class="beer-badge">Belgians/Sours</span>
+        <span class="beer-badge">Cider</span>
+        <span class="beer-badge">Fresh Hop</span>
+        <span class="beer-badge">IPA</span> 
+        <span class="beer-badge">Lagers/Pilsners/Wheat</span>
+        <span class="beer-badge">Porters/Stouts</span>
+        <span class="beer-badge">Wine</span>
+<div class="row">
+            <div class="col-sm-6 col-md-4">
+                            <div class"row beer-display">
+
+                <div class="thumbnail">
+                    <img src="http://beerhold.it/365/400/" alt="Lorem Pixel">
+                    <div class="caption">
+                        <h3>Beer Name</h3><br>
+                        <h4>
+                        ABV 5.5%/Belgium
+                        </h4>
+                        <hr class="short-rule">                        
+                        <p class="brewery">
+                        Cabinet Mountain Brewing
+                        </p>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class"row beer-display">
+                <div class="thumbnail">
+                    <img src="http://beerhold.it/365/400/" alt="Lorem Pixel">
+                    <div class="caption">
+                        <h3>Beer Name </h3><br>
+                        <h4>
+                        ABV 5.5%/Belgium
+                        </h4>
+                        <hr class="short-rule">                        
+                        <p class="brewery">
+                        Cabinet Mountain Brewing
+                        </p>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class"row beer-display">
+                <div class="thumbnail">
+                    <img src="http://beerhold.it/365/400/" alt="Lorem Pixel">
+                    <div class="caption">
+                        <h3>Beer Name</h3><br>
+                        <h4>
+                        ABV 5.5%/Belgium
+                        </h4>  
+                        <hr class="short-rule">
+                        <p class="brewery">
+                        Cabinet Mountain Brewing
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
     </main>
+</div>
 
     <footer>
         <% include ../partials/footer %>

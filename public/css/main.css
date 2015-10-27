@@ -1,0 +1,55 @@
+h3{
+	text-transform: uppercase;		
+	font-family: "Noto",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    margin: 10px 0px 25px 0px;
+    padding: 0px;
+    line-height: 1.1;
+    text-align: center;
+}
+h4{
+	color: #777777;
+	font-family: "Noto",Helvetica,Arial,sans-serif;
+    font-weight: 650px;
+    margin: 10px 0px 25px 0px;
+    padding: 0px;
+    line-height: 1.1;
+    text-align: center;
+
+}
+p.brewery{
+	color: #777777;
+	font-family: "Noto",Helvetica,Arial,sans-serif;
+	text-align: center;
+}
+.container-full {
+  margin: 0 auto;
+  margin-bottom: 17px;
+  width: 100%;
+  min-height:100%;
+  background-color:#110022;
+  color:#eee;
+  overflow:hidden;
+}
+.beer-badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 9px 12px;
+    margin:7px 7px 15px 7px;
+	font-family: "Noto",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #999;
+    border-radius: 18px;
+}
+.beer-display{
+	padding:30px;
+}
+.short-rule{
+	width: 25%;
+}
