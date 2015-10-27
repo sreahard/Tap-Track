@@ -22,6 +22,7 @@ router.route('/')
 		var category = req.body.category;
 		var ibu = req.body.ibu;
 		var abv = req.body.abv;
+		var location = req.body.location;
 		var brewery = req.body.brewery;
 		var description = req.body.description;
 		mongoose.model('Beer').create({
@@ -29,6 +30,7 @@ router.route('/')
 			category: category,
 			ibu: ibu,
 			abv: abv,
+			location: location,
 			brewery: brewery,
 			description: description
 
@@ -62,6 +64,7 @@ router.route('/:id')
 			beer.category = req.body.category;
 			beer.ibu = req.body.ibu;
 			beer.abv = req.body.abv;
+			beer.location = req.body.location;
 			beer.brewery = req.body.brewery;
 			beer.description = req.body.description;
 			console.log(JSON.stringify(beer));

@@ -5,6 +5,7 @@ var BeerSchema = new mongoose.Schema({
 	category: String,
 	ibu: String,
 	abv: String,
+	location: String,
 	brewery: String,
 	description: String
 });
