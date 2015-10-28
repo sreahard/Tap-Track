@@ -47,6 +47,22 @@ p.brewery{
     background-color: #999;
     border-radius: 18px;
 }
+.beer-badge-active {
+    display: inline-block;
+    min-width: 10px;
+    padding: 9px 12px;
+    margin:7px 7px 15px 7px;
+  font-family: "Noto",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #eee;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #999;
+    border-radius: 18px;
+}
 .beer-display{
 	padding:30px;
 }
