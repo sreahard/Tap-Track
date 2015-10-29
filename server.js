@@ -3,16 +3,33 @@ var app = express();
 var http = require('http');
 var path = require('path');
 var fs = require('fs');
+
+var port = process.env.PORT || 9090;
+var mongoose = require('mongoose');
+var passport = require('passport');
+
+var flash = require('connect-flash');
+
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
+var session      = require('express-session');
+
 var db = require('./model/db');
-
-
 
 var beerModel = require ('./model/beerModel');
 var beerRoutes = require ('./routes/beerRoutes');
 
 //Routes========================================================================
+
+
 app.use('/api/beer', beerRoutes);
 
+require('./config/passport')(passport);
+
+app.use(morgan('dev')); 
+app.use(cookieParser());
+app.use(bodyParser());
 
 
 // set the view engine to ejs
@@ -35,5 +52,12 @@ app.get('/enter_beer', function(req, res) {
     res.render('pages/enter_beer');
 });
 
-app.listen(9090);
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); 
+app.use(passport.initialize());
+app.use(passport.session()); 
+app.use(flash()); 
+
+require('./routes/userRoutes.js')(app, passport);
+
+app.listen(port);
 console.log('9090 is the magic port');
