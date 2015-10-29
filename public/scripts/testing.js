@@ -1,27 +1,46 @@
-var DATA = [
-{id : "56301ae20c165aa13cba3c98", name : "IPA Beer Name", category : "IPA", ibu : "47", abv : "56", location : "Missoula, MT", brewery : "Lolo", description : "Good beer 1!"},
-{id : "56301ae20c165aa13cba3c97", name : "Fresh Hop Beer Name", category : "Fresh Hop", ibu : "47", abv : "56", location : "Missoula, MT", brewery : "Lolo", description : "Good beer 2"},
-{id : "56301ae20c165aa13cba3c96", name : "Cider Name", category : "Cider", ibu : "47", abv : "56", location : "Missoula, MT", brewery : "Lolo", description : "Good beer 3"},
-]
 var App = React.createClass({
 
-  getInitialState () {
+    getInitialState () {
     return {
       activeTabIndex: 0
+    }, {
+      beers: []
     };
   },
+    loadBeers: function(beer) {
+
+    $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            cache: false,
+            success: function(data){
+                console.log(data)
+                this.setState({beers:data});
+            }.bind(this),
+            error: function(xhr, status, err){
+                console.log("Broken url is " + this.props.url)
+                console.error(this.props.url, status, err.toString());
+              }.bind(this)
+                    });
+    },
+
+    componentDidMount: function(){
+    this.loadBeers();
+  
+},
+
 
   handleTabClick (activeTabIndex) {
     this.setState({ activeTabIndex });
   },
 
   renderTabs () {
-    return this.props.beers.map((beer, index) => {
+    return this.state.beers.map((beer, index) => {
       var style = this.state.activeTabIndex === index ?
         styles.activeTab : styles.tab;
       var clickHandler = this.handleTabClick.bind(this, index);
       return (
-        <div key={beer.name} className="beer-badge" style={style} onClick={clickHandler}>
+        <div key={beer} className="beer-badge" style={style} onClick={clickHandler}>
           {beer.category}
         </div>
       );
@@ -29,21 +48,21 @@ var App = React.createClass({
   },
 
   renderPanel () {
-    var beer = this.props.beers[this.state.activeTabIndex];
+    var beer = this.state.beers[this.state.activeTabIndex];
     return (
       <div className="col-sm-6 col-md-4">
-                            <div className="row beer-display">
+            <div className="row beer-display">
 
                 <div className="thumbnail">
                     <img src="http://beerhold.it/365/400/" alt="Lorem Pixel"/>
                     <div className="caption">
-                        <h3>{beer.name}</h3><br/>
+                        <h3>{beer}</h3><br/>
                         <h4>
-                        ABV {beer.abv}%/{beer.ibu} IBU/{beer.location}
+                        ABV {beer}%/{beer} IBU/{beer}
                         </h4>
                         <hr className="short-rule"/>                        
                         <p className="brewery">
-                        {beer.brewery}
+                        {beer}
                         </p>
 
                     </div>
@@ -52,7 +71,6 @@ var App = React.createClass({
             </div>
     );
   },
-
   render () {
     return (
       <div style={styles.app}>
@@ -64,8 +82,9 @@ var App = React.createClass({
         </div>
       </div>
     );
-
   }
+
+
 });
 
 var styles = {};
@@ -88,4 +107,4 @@ styles.tabPanels = {
   padding: 10
 };
 
-React.render(<App beers={DATA}/>, document.getElementById("testing"));
+React.render(<App url="/api/beer/"/>, document.getElementById("testing"));
