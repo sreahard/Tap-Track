@@ -3,7 +3,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 
 // load up the user model
-var User       = require('../app/models/user');
+var User       = require('../model/user');
 
 // load the auth variables
 var configAuth = require('./auth');
@@ -159,7 +159,6 @@ function(token, refreshToken, profile, done) {
 
     }));
 
-};
 // =========================================================================
     // TWITTER =================================================================
     // =========================================================================
@@ -168,7 +167,6 @@ function(token, refreshToken, profile, done) {
         consumerKey     : configAuth.twitterAuth.consumerKey,
         consumerSecret  : configAuth.twitterAuth.consumerSecret,
         callbackURL     : configAuth.twitterAuth.callbackURL
-
     },
     function(token, tokenSecret, profile, done) {
 
@@ -208,5 +206,4 @@ function(token, refreshToken, profile, done) {
         });
 
     }));
-
 };
