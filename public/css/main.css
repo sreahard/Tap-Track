@@ -1,20 +1,20 @@
 h3{
 	text-transform: uppercase;		
 	font-family: "Noto",Helvetica,Arial,sans-serif;
-    font-weight: 700;
-    margin: 10px 0px 25px 0px;
-    padding: 0px;
-    line-height: 1.1;
-    text-align: center;
+  font-weight: 700;
+  margin: 10px 0px 25px 0px;
+  padding: 0px;
+  line-height: 1.1;
+  text-align: center;
 }
 h4{
 	color: #777777;
 	font-family: "Noto",Helvetica,Arial,sans-serif;
-    font-weight: 650px;
-    margin: 10px 0px 25px 0px;
-    padding: 0px;
-    line-height: 1.1;
-    text-align: center;
+  font-weight: 650px;
+  margin: 10px 0px 25px 0px;
+  padding: 0px;
+  line-height: 1.1;
+  text-align: center;
 
 }
 p.brewery{
@@ -22,6 +22,67 @@ p.brewery{
 	font-family: "Noto",Helvetica,Arial,sans-serif;
 	text-align: center;
 }
+/*  NAV BAR STYLING
+*/ 
+
+.navbar2 {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0;
+    border: 1px solid transparent;
+}
+.navbar-brand {
+  float: left;
+  padding: 20px 20px;
+  font-size: 18px;
+  line-height: 20px;
+  box-shadow: 0px 20px 50px #222;
+}
+.navbar-nav li a {
+  padding-top: 75px;
+  line-height: 20px;
+}
+
+.btn-menu {
+  color: #fff;
+  background-color: #222;
+  border-color: #cccccc;
+  display:inline-block;
+  padding: 12px 10px;
+  margin-bottom: 50px;
+  font-family: "Noto",Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  font-size:14px;
+  line-height:1.42857143;
+  text-align:center;
+  text-transform: uppercase;
+  white-space:nowrap;
+  vertical-align:middle;
+  -ms-touch-action:manipulation;touch-action:manipulation;
+  cursor:pointer;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  background-image:none;
+  border:1px solid transparent;
+  border-radius:4px
+}
+.btn-menu:focus,
+.btn-menu.focus {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+.btn-menu:hover {
+  border-color: #fff;
+}
+.btn-menu:active,
+.btn-menu.active,
+.open > .dropdown-toggle.btn-menu {
+  border-color: #fff;
+}
+
 .container-full {
   margin: 0 auto;
   margin-bottom: 17px;
@@ -32,36 +93,36 @@ p.brewery{
   overflow:hidden;
 }
 .beer-badge {
-    display: inline-block;
-    min-width: 10px;
-    padding: 9px 12px;
-    margin:7px 7px 15px 7px;
-	font-family: "Noto",Helvetica,Arial,sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    background-color: #999;
-    border-radius: 18px;
+  display: inline-block;
+  min-width: 10px;
+  padding: 9px 12px;
+  margin:7px 7px 15px 7px;
+  font-family: "Noto",Helvetica,Arial,sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #999;
+  border-radius: 18px;
 }
 .beer-badge-active {
-    display: inline-block;
-    min-width: 10px;
-    padding: 9px 12px;
-    margin:7px 7px 15px 7px;
+  display: inline-block;
+  min-width: 10px;
+  padding: 9px 12px;
+  margin:7px 7px 15px 7px;
   font-family: "Noto",Helvetica,Arial,sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
-    color: #eee;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    background-color: #999;
-    border-radius: 18px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #eee;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #999;
+  border-radius: 18px;
 }
 .beer-display{
 	padding:30px;
