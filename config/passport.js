@@ -3,7 +3,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 
 // load up the user model
-var User       = require('../app/models/user');
+var User       = require('../model/user');
 
 // load the auth variables
 var configAuth = require('./auth');
@@ -113,15 +113,18 @@ module.exports = function(passport) {
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
-        profileFields: ["emails", "displayName"]
+        profileFields: ["emails", "displayName"],
+        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
     },
 
     // facebook will send back the token and profile
-function(token, refreshToken, profile, done) {
+function(req, token, refreshToken, profile, done) {
 
         // asynchronous
         process.nextTick(function() {
+
+            if(!req.user) {
 
             // find the user in the database based on their facebook id
             User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
@@ -133,6 +136,16 @@ function(token, refreshToken, profile, done) {
 
                 // if the user is found, then log them in
                 if (user) {
+                    if (!user.facebook.token) {
+                        user.facebook.token = token;
+                        user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                        user.facebook.email = profile.emails[0].value;
+                        user.save(function(err) {
+                            if (err)
+                                throw err;
+                            return done(null, user);
+                        });
+                    }
                     return done(null, user); // user found, return that user
                 } else {
                     // if there is no user found with that facebook id, create them
@@ -155,11 +168,28 @@ function(token, refreshToken, profile, done) {
                 }
 
             });
+
+       } else {
+            // user already exists and is logged in, we have to link accounts
+                var user            = req.user; // pull the user out of the session
+
+                // update the current users facebook credentials
+                user.facebook.id    = profile.id;
+                user.facebook.token = token;
+                user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                user.facebook.email = profile.emails[0].value;
+
+                // save the user
+                user.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, user);
+                });
+            }
         });
 
-    }));
+    })); 
 
-};
 // =========================================================================
     // TWITTER =================================================================
     // =========================================================================
@@ -167,14 +197,17 @@ function(token, refreshToken, profile, done) {
 
         consumerKey     : configAuth.twitterAuth.consumerKey,
         consumerSecret  : configAuth.twitterAuth.consumerSecret,
-        callbackURL     : configAuth.twitterAuth.callbackURL
+        callbackURL     : configAuth.twitterAuth.callbackURL,
+        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
     },
-    function(token, tokenSecret, profile, done) {
+    function(req, token, tokenSecret, profile, done) {
 
         // make the code asynchronous
         // User.findOne won't fire until we have all our data back from Twitter
         process.nextTick(function() {
+
+            if(!req.user) {
 
             User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
     
@@ -205,8 +238,24 @@ function(token, refreshToken, profile, done) {
                 }
 
             });
+                 } else {
+            // user already exists and is logged in, we have to link accounts
+                var user            = req.user; // pull the user out of the session
+
+                // update the current users facebook credentials
+                user.twitter.id    = profile.id;
+                user.twitter.token = token;
+                user.twitter.username  = profile.username.givenName + ' ' + profile.username.familyName;
+                user.twitter.displayName = profile.displayName;
+
+                // save the user
+                user.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, user);
+                });
+            }
         });
 
     }));
-
 };
