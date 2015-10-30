@@ -15,7 +15,13 @@ h4{
   margin: 10px 0px 25px 0px;
   padding: 0px;
   text-align: center;
-
+}
+h4.form{
+  color: #777777;
+  font-family: "Noto",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  margin: 10px 0px 25px 0px;
+  padding: 0px;
 }
 p.brewery{
 	color: #777777;
