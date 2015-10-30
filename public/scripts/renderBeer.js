@@ -10,7 +10,11 @@ var BeerList = React.createClass({
             fltr: category
         })
     },
-
+    reToggle: function (category) {
+        this.setState({
+            fltr: null
+        })
+    },
     render: function() {
         window.cat = this.state.fltr;
         window.toggle = this.toggle;
@@ -61,6 +65,7 @@ var BeerList = React.createClass({
 
             <div>
             <div>
+            <button className="beer-cat" onClick={that.reToggle}>All</button>
             {beerButtons}
             </div>
             {beerData}
