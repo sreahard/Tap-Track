@@ -4,7 +4,6 @@ h3{
   font-weight: 700;
   margin: 10px 0px 25px 0px;
   padding: 0px;
-  line-height: 1.1;
   text-align: center;
 }
 h4{
@@ -13,7 +12,6 @@ h4{
   font-weight: 650px;
   margin: 10px 0px 25px 0px;
   padding: 0px;
-  line-height: 1.1;
   text-align: center;
 
 }
@@ -83,6 +81,70 @@ p.brewery{
   border-color: #fff;
 }
 
+.ghost-button-semi-transparent {
+  display: inline-block;
+  width: 400px;
+  height:150px;
+  padding: 30px 60px 30px 60px;
+  color: #fff;
+  border: 2px solid #fff;
+  margin: 10px;
+  font-family: "Noto",Helvetica,Arial,sans-serif;
+  font-weight: 650px;
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  transition: background-color 0.2s ease-out,
+              border-color 0.2s ease-out;
+}
+.ghost-button-semi-transparent:hover,
+.ghost-button-semi-transparent:active {
+  background-color: #fff; /* fallback */
+  background-color: rgba(0, 0, 0, 0.2);
+  border-color: #fff; /* fallback */
+  border-color: rgba(255, 255, 255, 0.4);
+  transition: background-color 0.3s ease-in,
+              border-color 0.3s ease-in;
+}
+.centerButtons {
+    margin: 0 auto;
+    float: left;
+} 
+.jumbotron {
+    position: relative;
+    background: #000 url("/images/barrel.jpg") center center;
+    padding: 180px 0 180px 0;
+    width: 100%;
+    height:auto;
+    background-size: cover;
+    overflow: hidden;
+}
+/*Buttons for beer categories*/
+
+.beer-cat {
+  min-width: 10px;
+  margin: 20px 5px;
+  list-style: none;
+  text-align: center;
+  font-family: "Noto",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  color:#fff;
+  display: inline-block;
+  padding: 10px 28px;
+  background-color: #222;
+  border: 1px solid #dddddd;
+  border-radius: 28px;
+}
+.beer-cat:hover {
+  color: #222;  
+  background-color: #999;
+}
+
 .container-full {
   margin: 0 auto;
   margin-bottom: 17px;
@@ -92,38 +154,7 @@ p.brewery{
   color:#eee;
   overflow:hidden;
 }
-.beer-badge {
-  display: inline-block;
-  min-width: 10px;
-  padding: 9px 12px;
-  margin:7px 7px 15px 7px;
-  font-family: "Noto",Helvetica,Arial,sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  background-color: #999;
-  border-radius: 18px;
-}
-.beer-badge-active {
-  display: inline-block;
-  min-width: 10px;
-  padding: 9px 12px;
-  margin:7px 7px 15px 7px;
-  font-family: "Noto",Helvetica,Arial,sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  color: #eee;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  background-color: #999;
-  border-radius: 18px;
-}
+
 .beer-display{
 	padding:30px;
 }

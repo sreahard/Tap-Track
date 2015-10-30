@@ -38,7 +38,7 @@ var BeerList = React.createClass({
 
         var beerButtons = beerCats.map(function(category){
             return (
-                <button onClick={that.toggle.bind(that, category)}>{category}</button>
+                <button className="beer-cat" onClick={that.toggle.bind(that, category)}>{category}</button>
                 )
         });
         var beerData = this.props.data.map(function(beer){
@@ -48,7 +48,7 @@ var BeerList = React.createClass({
                  <div className="row beer-display">
 
                  <div className="thumbnail">
-                 <img src="http://beerhold.it/365/400/" alt="Lorem Pixel"/>
+                 <img src="./images/beer.jpeg" alt="Lorem Pixel"/>
                  <div className="caption">
                  <h3>{beer.name}</h3><br/>
                  <h4>
@@ -68,8 +68,9 @@ var BeerList = React.createClass({
         return (
 
             <div>
-            <h1>{that.fltr}</h1>
+            <div>
             {beerButtons}
+            </div>
             {beerData}
             </div>
             );
