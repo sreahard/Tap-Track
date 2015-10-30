@@ -128,7 +128,7 @@ p.brewery{
 
 .beer-cat {
   min-width: 10px;
-  margin: 20px 5px;
+  margin: 5px 5px 5px 5px;
   list-style: none;
   text-align: center;
   font-family: "Noto",Helvetica,Arial,sans-serif;

@@ -1,46 +1,3 @@
-var FileForm = React.createClass({
-
-  // since we are starting off without any data, there is no initial value
-  getInitialState: function() {
-    return {
-      data_uri: null,
-    };
-  },
-
-  // prevent form from submitting; we are going to capture the file contents
-  handleSubmit: function(e) {
-    e.preventDefault();
-
-  },
-
-  // when a file is passed to the input field, retrieve the contents as a
-  // base64-encoded data URI and save it to the component's state
-  handleFile: function(e) {
-    var self = this;
-    var reader = new FileReader();
-    var file = e.target.files[0];
-
-    reader.onload = function(upload) {
-      self.setState({
-        data_uri: upload.target.result,
-      });
-    }
-
-    reader.readAsDataURL(file);
-  },
-
-  // return the structure to display and bind the onChange, onSubmit handlers
-  render: function() {
-    // since JSX is case sensitive, be sure to use 'encType'
-    return (
-      <form onSubmit={this.handleSubmit} encType="multipart/form-data">
-        <input type="file" onChange={this.handleFile} />
-            <input onClick={this.handleFile} type="submit" />
-      </form>
-    );
-  },
-});
-
 var BeerForm = React.createClass({
 
   handleSubmit: function(e){
@@ -84,7 +41,11 @@ var BeerForm = React.createClass({
 
 render: function() {
       return (
-               <div className="container">
+
+               <div className="col-sm-6 col-md-8">
+                <div className="row">
+                <h1>Enter New Beers</h1>
+                <hr/>
               <form>
                   <div className="form-group">
                       <label>Beer Name</label>
@@ -114,9 +75,76 @@ render: function() {
                   <button onClick={this.handleSubmit} type="submit" className="btn btn-default"> Submit </button>
               </form>
                </div>
+               </div>
+
           );
   }
 });
 
+var OnTapList = React.createClass({
+    render: function() {
+    
+    var beerData = this.props.data.map(function(beer){
+             return (
+                 <div>
+                 <table className="table">
+                   <tbody>
+                     <tr className="col-xs-3">
+                      <td style={{width:"80%"}}>{beer.name}</td>
+                      <td style={{width:"10%"}}><span className="glyphicon glyphicon-pencil"></span></td>
+                      <td style={{width:"10%"}}><span className="glyphicon glyphicon-minus-sign"></span></td>
+
+                     </tr>
+                   </tbody>
+                 </table>
+                 </div>
+        )
+           });
+        return (
+
+            <div>
+            {beerData}
+            </div>
+            );
+    }
+});
+
+
+var App = React.createClass({
+    getInitialState: function(){
+        return {data: []};
+    },
+
+    loadBeers: function(beer) {
+    // var beerPost = this.state.data;
+    $.ajax({
+        url: this.props.url,
+        dataType: 'json',
+        cache: false,
+        success: function(data){
+            console.log("inside success")
+            this.setState({data:data});
+        }.bind(this),
+        error: function(xhr, status, err){
+            console.log("Broken url is " + this.props.url)
+            console.error(this.props.url, status, err.toString());
+        }.bind(this)
+    });
+},
+
+    componentDidMount: function(){
+        this.loadBeers();
+    },
+
+
+    render: function() {
+        return (
+            <div>
+            <OnTapList data={this.state.data}/>
+            </div>
+            )
+    }
+})
+
 React.render(<BeerForm url="/api/beer/"/>, document.getElementById('beerForm'));
-React.render(<FileForm target="/api/beer/"/>, document.getElementById('fileUpload'));
+React.render(<App url="/api/beer/"/>, document.getElementById('allBeers'));
