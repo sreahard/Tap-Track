@@ -1,18 +1,10 @@
-
-
 var BeerList = React.createClass({
     getInitialState: function(){
         return {
             fltr: null
         };
     },
-    // renderBeers: function(){
-    //     var showBeers = this.state.fltr;
 
-    //     if(showBeers){
-    //         return 
-    // //     }
-    // }
     toggle: function (category) {
         this.setState({
             fltr: category
@@ -52,7 +44,7 @@ var BeerList = React.createClass({
                  <div className="caption">
                  <h3>{beer.name}</h3><br/>
                  <h4>
-                 ABV {beer.abv}%/{beer.ibu} IBU/{beer.location}
+                  {beer.abv > 0 ? ' ABV ' + beer.abv + '% / ': ''} {beer.ibu}{beer.ibu > 0 ? ' IBU / ' : ''}{beer.location}
                  </h4>
                  <hr className="short-rule"/>                        
                  <p className="brewery">
@@ -100,18 +92,18 @@ var App = React.createClass({
     });
 },
 
-componentDidMount: function(){
-    this.loadBeers();
-},
+    componentDidMount: function(){
+        this.loadBeers();
+    },
 
 
-render: function() {
-    return (
-        <div>
-        <BeerList data={this.state.data}/>
-        </div>
-        )
-}
+    render: function() {
+        return (
+            <div>
+            <BeerList data={this.state.data}/>
+            </div>
+            )
+    }
 })
 
 React.render(<App url="/api/beer/"/>, document.getElementById("beerPosts") )
