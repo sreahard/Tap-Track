@@ -23,10 +23,22 @@ var BeerList = React.createClass({
         window.cat = this.state.fltr;
         window.toggle = this.toggle;
         var that = this;
-        var beerButtons = this.props.data.map(function(beer){
-            var category = beer.category;
+        var beerCats = [];
+
+        this.props.data.map(function(beer){
+            if(beerCats.indexOf(beer.category) === -1) {
+                beerCats.push(beer.category);
+                
+            } else {
+                //push a value into beerCats array
+            }
+            // return beerCats [beer.category]
+
+        })
+
+        var beerButtons = beerCats.map(function(category){
             return (
-                <button onClick={that.toggle.bind(that, category)}>{beer.category}</button>
+                <button onClick={that.toggle.bind(that, category)}>{category}</button>
                 )
         });
         var beerData = this.props.data.map(function(beer){
