@@ -114,14 +114,14 @@ var OnTapList = React.createClass({
     var id = id;
 
 
-    // var name = React.findDOMNode(this.refs.name).value.trim();
-    // var image = React.findDOMNode(this.refs.image).value.trim();
-    // var category = React.findDOMNode(this.refs.category).value.trim();
-    // var ibu = React.findDOMNode(this.refs.ibu).value.trim();
-    // var abv = React.findDOMNode(this.refs.abv).value.trim();
-    // var location = React.findDOMNode(this.refs.location).value.trim();
-    // var brewery = React.findDOMNode(this.refs.brewery).value.trim();
-    // var description = React.findDOMNode(this.refs.description).value.trim();
+    var name = React.findDOMNode(this.refs.name).value.trim();
+    var image = React.findDOMNode(this.refs.image).value.trim();
+    var category = React.findDOMNode(this.refs.category).value.trim();
+    var ibu = React.findDOMNode(this.refs.ibu).value.trim();
+    var abv = React.findDOMNode(this.refs.abv).value.trim();
+    var location = React.findDOMNode(this.refs.location).value.trim();
+    var brewery = React.findDOMNode(this.refs.brewery).value.trim();
+    var description = React.findDOMNode(this.refs.description).value.trim();
 
 
 
@@ -130,12 +130,12 @@ var OnTapList = React.createClass({
       return;
     }
 
-    //var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery, description: description});
+    var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery, description: description});
 
     $.ajax({
       url: this.props.url + id,
       dataType: 'json',
-      //data: data,
+      data: data,
       type:'PUT',
       success: function(response){
         console.log("posting data!", data, response)
@@ -176,33 +176,33 @@ var OnTapList = React.createClass({
         <label>{beer.name}</label>
      <div className="form-group">
      <label>Beer Name</label>
-     <input type="text" className="form-control" ref="name" placeholder={beer.name}/>
+     <input type="text" className="form-control" ref="name" defaultValue={beer.name}/>
      </div>
      <div className="form-group">
      <label>Image URL</label>
-     <input type="text" className="form-control" ref="image" value={beer.image}/>
+     <input type="text" className="form-control" ref="image" defaultValue={beer.image}/>
      </div>
 
      <div className="form-group">
      <label>Type of Beer </label>
-     <input type="author" className="form-control" ref="category" value={beer.category}/>
+     <input type="author" className="form-control" ref="category" defaultValue={beer.category}/>
      </div>
      <div className="form-group">
      <label>IBU</label>
-     <input className="form-control" ref="ibu" value={beer.ibu}/>
+     <input className="form-control" ref="ibu" defaultValue={beer.ibu}/>
      </div>
      <div className="form-group">
      <label>ABV</label>
-     <input className="form-control" ref="abv" value={beer.abv}/>
+     <input className="form-control" ref="abv" defaultValue={beer.abv}/>
      </div><div className="form-group">
      <label>Location</label>
-     <input className="form-control" ref="location" value={beer.location}/>
+     <input className="form-control" ref="location" defaultValue={beer.location}/>
      </div><div className="form-group">
      <label>Brewery</label>
-     <input className="form-control" ref="brewery" value={beer.brewery}/>
+     <input className="form-control" ref="brewery" defaultValue={beer.brewery}/>
      </div><div className="form-group">
      <label>Description</label>
-     <textarea  rows="15" className="form-control" ref="description" value={beer.description}></textarea>
+     <textarea  rows="15" className="form-control" ref="description" defaultValue={beer.description}></textarea>
      </div>
      <button onClick={that.handleUpdate.bind(this, beer._id)} type="submit" className="btn btn-default"> Submit </button>
      </form>
@@ -240,7 +240,6 @@ var App = React.createClass({
   },
 
   loadBeers: function(beer) {
-    // var beerPost = this.state.data;
     $.ajax({
       url: this.props.url,
       dataType: 'json',
