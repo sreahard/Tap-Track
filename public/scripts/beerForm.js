@@ -36,8 +36,7 @@ var BeerForm = React.createClass({
                       console.error(this.props.url, status, err.toString());
                   }.bind(this)
           })
-  }
-  ,
+  },
 
 
 render: function() {
@@ -85,18 +84,45 @@ render: function() {
   }
 });
 
+
 var OnTapList = React.createClass({
+    
+    deleteClick: function(id) {
+      var id = id;
+      console.log(id);
+    alert("Are you sure you want to delete?");
+
+    $.ajax({
+              url: this.props.url + id,
+              dataType: 'json',
+              type:'DELETE',
+                  success: function(response){
+                  console.log("Deleting data!", response)
+                  document.location='/'
+                  }.bind(this),
+                  error: function(xhr, status, err){
+                      console.log("not deleting data!")
+                      console.error(this.props.url, status, err.toString());
+                  }.bind(this)
+          })
+
+    },
+
     render: function() {
     
-    var beerData = this.props.data.map(function(beer){
+      var that = this;
+    
+      var beerData = this.props.data.map(function(beer){
+      var beerId = {beer};
              return (
                  <div>
                  <table className="table">
                    <tbody>
                      <tr className="col-md-3">
                       <td style={{width:"80%"}}>{beer.name}</td>
-                      <td style={{width:"10%"}}><span className="glyphicon glyphicon-pencil"></span></td>
-                      <td style={{width:"10%"}}><span className="glyphicon glyphicon-minus-sign"></span></td>
+                      <td style={{width:"10%"}}><i className="fa fa-pencil"></i></td>
+                      <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-minus-circle" ></i></button></td>
+                      
 
                      </tr>
                    </tbody>
@@ -144,7 +170,7 @@ var App = React.createClass({
     render: function() {
         return (
             <div>
-            <OnTapList data={this.state.data}/>
+            <OnTapList data={this.state.data} url="/api/beer/"/>
             </div>
             )
     }
