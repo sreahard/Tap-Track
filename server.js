@@ -61,6 +61,10 @@ app.get('/rate', function(req, res) {
     res.render('pages/rate');
 });
 
+app.get('/beer_profile', function(req, res) {
+    res.render('pages/beer_profile');
+});
+
 
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); 
 app.use(passport.initialize());

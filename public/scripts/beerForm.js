@@ -108,34 +108,29 @@ var OnTapList = React.createClass({
 
   },
   handleUpdate: function(id){
-
-   
     
     var id = id;
 
-
-    // var name = React.findDOMNode(this.refs.name).value.trim();
-    // var image = React.findDOMNode(this.refs.image).value.trim();
-    // var category = React.findDOMNode(this.refs.category).value.trim();
-    // var ibu = React.findDOMNode(this.refs.ibu).value.trim();
-    // var abv = React.findDOMNode(this.refs.abv).value.trim();
-    // var location = React.findDOMNode(this.refs.location).value.trim();
-    // var brewery = React.findDOMNode(this.refs.brewery).value.trim();
-    // var description = React.findDOMNode(this.refs.description).value.trim();
-
-
+    var name = React.findDOMNode(this.refs.name).value.trim();
+    var image = React.findDOMNode(this.refs.image).value.trim();
+    var category = React.findDOMNode(this.refs.category).value.trim();
+    var ibu = React.findDOMNode(this.refs.ibu).value.trim();
+    var abv = React.findDOMNode(this.refs.abv).value.trim();
+    var location = React.findDOMNode(this.refs.location).value.trim();
+    var brewery = React.findDOMNode(this.refs.brewery).value.trim();
+    var description = React.findDOMNode(this.refs.description).value.trim();
 
     console.log(id);
     if(!name){
       return;
     }
 
-    //var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery, description: description});
+    var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery, description: description});
 
     $.ajax({
       url: this.props.url + id,
       dataType: 'json',
-      //data: data,
+      data: data,
       type:'PUT',
       success: function(response){
         console.log("posting data!", data, response)
@@ -147,6 +142,7 @@ var OnTapList = React.createClass({
       }.bind(this)
     })
   },
+  
   getInitialState: function(){
     return {
       fltr: null
@@ -209,7 +205,7 @@ var OnTapList = React.createClass({
         </div>
 
         )
-}.bind(this)); 
+}.bind(this));  
 
 var beerData = this.props.data.map(function(beer){
      return (

@@ -1,3 +1,13 @@
+h2{
+  text-transform: uppercase;    
+  font-family: "Noto",Helvetica,Arial,sans-serif;
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin: 10px 0px 15px 0px;
+  padding: 0px;
+}
+
 h3{
 	text-transform: uppercase;		
 	font-family: "Noto",Helvetica,Arial,sans-serif;
@@ -6,7 +16,6 @@ h3{
   letter-spacing: -1px;
   margin: 10px 0px 15px 0px;
   padding: 0px;
-  text-align: center;
 }
 h4{
 	color: #777777;
@@ -14,7 +23,6 @@ h4{
   font-size: 16px;
   margin: 10px 0px 25px 0px;
   padding: 0px;
-  text-align: center;
 }
 h4.form{
   color: #777777;
@@ -173,7 +181,12 @@ p.rating{
 
 .beer-display{
 	padding:15px;
+  max-height: 750px;
+  margin:5px;
   text-align: center;
+}
+.beer-profile{
+  padding:15px;
 }
 .short-rule{
 	width: 25%;
