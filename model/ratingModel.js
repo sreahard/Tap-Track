@@ -1,13 +1,10 @@
 var mongoose = require ('mongoose');
 
 var RatingSchema = new mongoose.Schema({
-	name: Array,
-	category: String,
-	ibu: String,
-	abv: String,
-	location: String,
-	brewery: String,
-	description: String
+	aroma: String,
+	appearance: String,
+	taste: String,
+	overall: { type: Number, min: 0, max: 5 }
 });
 
-module.exports = mongoose.model('Rating', BeerSchema);
+module.exports = mongoose.model('Rate', RatingSchema);

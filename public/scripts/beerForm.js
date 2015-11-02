@@ -5,6 +5,7 @@ var BeerForm = React.createClass({
       e.preventDefault();
 
       var name = React.findDOMNode(this.refs.name).value.trim();
+      var image = React.findDOMNode(this.refs.image).value.trim();
       var category = React.findDOMNode(this.refs.category).value.trim();
       var ibu = React.findDOMNode(this.refs.ibu).value.trim();
       var abv = React.findDOMNode(this.refs.abv).value.trim();
@@ -19,7 +20,7 @@ var BeerForm = React.createClass({
         return;
       }
 
-      var data = ({name: name, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery, description: description});
+      var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery, description: description});
 
           $.ajax({
               url: this.props.url,
@@ -43,7 +44,6 @@ render: function() {
       return (
 
                <div className="col-sm-6 col-md-8">
-                <div className="row">
                 <h1>Enter New Beers</h1>
                 <hr/>
               <form>
@@ -51,6 +51,11 @@ render: function() {
                       <label>Beer Name</label>
                       <input type="text" className="form-control" ref="name" placeholder="Beer Name"/>
                   </div>
+                  <div className="form-group">
+                      <label>Image URL</label>
+                      <input type="text" className="form-control" ref="image" placeholder="Image URL"/>
+                  </div>
+
                   <div className="form-group">
                       <label>Type of Beer </label>
                       <input type="author" className="form-control" ref="category" placeholder="Type of Beer"/>
@@ -75,7 +80,6 @@ render: function() {
                   <button onClick={this.handleSubmit} type="submit" className="btn btn-default"> Submit </button>
               </form>
                </div>
-               </div>
 
           );
   }
@@ -89,7 +93,7 @@ var OnTapList = React.createClass({
                  <div>
                  <table className="table">
                    <tbody>
-                     <tr className="col-xs-3">
+                     <tr className="col-md-3">
                       <td style={{width:"80%"}}>{beer.name}</td>
                       <td style={{width:"10%"}}><span className="glyphicon glyphicon-pencil"></span></td>
                       <td style={{width:"10%"}}><span className="glyphicon glyphicon-minus-sign"></span></td>
