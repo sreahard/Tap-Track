@@ -26,14 +26,22 @@ h4.form{
 p.brewery{
 	color: #777777;
 	font-family: "Noto",Helvetica,Arial,sans-serif;
-	text-align: center;
+/*	text-align: center;
+*/}
+p.rating{
+  color: #FFCC00;
+  font-family: "Noto",Helvetica,Arial,sans-serif;
+  font-size: 2em;
+/*  text-align: center;
+*/  letter-spacing: 4px;
 }
+
 /*  NAV BAR STYLING
 */ 
 
 .navbar2 {
     position: relative;
-    min-height: 50px;
+    min-height: 170px;
     margin-bottom: 0;
     border: 1px solid transparent;
 }
@@ -165,7 +173,52 @@ p.brewery{
 
 .beer-display{
 	padding:15px;
+  text-align: center;
 }
 .short-rule{
 	width: 25%;
+  box-shadow: 2px 2px 1px #888888;
+}
+.well-beer {
+  min-height: 20px;
+  padding: 0 0 19px 0;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.glyphicon:before {
+     visibility: visible;
+      font-size: 40px;
+      margin: 5px;
+      color: #E0E0E0;
+}
+.glyphicon.glyphicon-star-empty:checked:before {
+    font-size: 40px;
+    margin: 6px;
+    width: 30px;
+    height: 30px;
+    color: #FFCC00;
+
+}
+input[type=checkbox].glyphicon{
+     visibility: hidden;  
+     vertical-align: center;
+     width: 40px;
+     height: 40px;      
+}
+
+.star {
+    content: "&#xf251;"; 
+    font-family: "FontAwesome";
+    font-size: 4em;
+    color: #FFCC00;
+    display:inline-block;
+    margin:-2px;
+    padding: 4px 12px;
+    background-color: #e7e7e7;
+    border-color: #ddd;
 }
