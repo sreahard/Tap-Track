@@ -32,23 +32,37 @@ var RateForm = React.createClass({
   },
 
 render: function() {
+
+    var that = this;
+
+    var getBeerData = this.props.data.map(function(beer){
       
         return(
-          <div className="container">
           <div className="container">  
           <div className="col-sm-6 col-md-4">
           <div className="beer-display">
           <div className="row">
           <div className="well-beer">
-          <img src="http://www.dramshopmt.com/wp-content/uploads/2015/09/Draught-Works-Lauren-Bacall-Key-Lime-Sour-600x800.jpeg" className="img-responsive"/>
+          <img src={beer.image} className="img-responsive"/>
           </div>
           </div>
           </div>
           </div>
           <div className="col-sm-6 col-md-6">
           <div className="row">
-          <h1>Beer Name you are Rating</h1>
+          <h1>{beer.name}</h1>
           <hr/>
+          </div>
+          </div>
+          </div>
+          )
+      
+    }.bind(this));
+
+    var rateBeerForm = this.props.data.map(function(beer){
+      
+        return(
+
           <form action="" method="POST" role="form">
 
           <div className="form-group">
@@ -71,14 +85,20 @@ render: function() {
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
           </form>
-          </div>
-          </div>
-          </div>
-          </div>
-          )
 
-      }
-});     
+           )
+      
+    });
+
+return (
+
+  <div className="container">
+  {getBeerData}
+  {rateBeerForm}
+  </div>
+  );
+  }
+});  
 
 
 var App = React.createClass({
@@ -117,4 +137,4 @@ var App = React.createClass({
   }
 })
 
-React.render(<App url="/api/ratings/"/>, document.getElementById('rateForm'));
+React.render(<App url="/api/beer/"/>, document.getElementById('rateForm'));
