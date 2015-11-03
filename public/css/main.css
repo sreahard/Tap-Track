@@ -30,8 +30,7 @@ p.rating{
   color: #FFCC00;
   font-family: "Noto",Helvetica,Arial,sans-serif;
   font-size: 2em;
-/*  text-align: center;
-*/  letter-spacing: 4px;
+  letter-spacing: 4px;
 }
 
 /*  NAV BAR STYLING
@@ -182,7 +181,9 @@ p.rating{
   color:#eee;
   overflow:hidden;
 }
-
+#Update {
+  float: right;
+}
 .beer-display{
 	padding:15px;
   text-align: center;

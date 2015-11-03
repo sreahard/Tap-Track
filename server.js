@@ -53,6 +53,10 @@ app.get('/about', function(req, res) {
     res.render('pages/about');
 });
 
+app.get('/test', function(req, res) {
+    res.render('pages/test');
+});
+
 app.get('/beer_profile', function(req, res) {
     res.render('pages/beer_profile');
 });

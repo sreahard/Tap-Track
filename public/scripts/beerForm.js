@@ -42,14 +42,19 @@ var BeerForm = React.createClass({
   render: function() {
     return (
 
-     <div className="col-sm-6 col-md-8">
+     <div>
+     <div className="col-sm-6 col-md-12">
      <h1>Enter New Beers</h1>
      <hr/>
+
+     
      <form>
+     <div className="col-sm-6 col-md-6">
      <div className="form-group">
      <label>Beer Name</label>
      <input type="text" className="form-control" ref="name" placeholder="Beer Name"/>
      </div>
+
      <div className="form-group">
      <label>Image URL</label>
      <input type="text" className="form-control" ref="image" placeholder="Image URL"/>
@@ -59,25 +64,39 @@ var BeerForm = React.createClass({
      <label>Type of Beer </label>
      <input type="author" className="form-control" ref="category" placeholder="Type of Beer"/>
      </div>
+
      <div className="form-group">
      <label>IBU</label>
      <input className="form-control" ref="ibu" placeholder="IBU"/>
      </div>
+
      <div className="form-group">
      <label>ABV</label>
      <input className="form-control" ref="abv" placeholder="ABV"/>
-     </div><div className="form-group">
+     </div>
+     </div>
+     <div className="col-sm-6 col-md-6">
+
+     <div className="form-group">
      <label>Location</label>
      <input className="form-control" ref="location" placeholder="Location"/>
-     </div><div className="form-group">
+     </div>
+
+     <div className="form-group">
      <label>Brewery</label>
      <input className="form-control" ref="brewery" placeholder="Brewery"/>
-     </div><div className="form-group">
+     </div>
+
+     <div className="form-group">
      <label>Description</label>
-     <textarea  rows="15" className="form-control" ref="description" placeholder="Description"></textarea>
+     <textarea  rows="9" className="form-control" ref="description" placeholder="Description"></textarea>
+     </div>
      </div>
      <button onClick={this.handleSubmit} type="submit" className="btn btn-default"> Submit </button>
+
      </form>
+
+     </div>
      </div>
 
      );
@@ -171,9 +190,8 @@ var OnTapList = React.createClass({
     var updateBeerForm = this.props.data.map(function(beer){
       if (beer.name === this.state.fltr)
        return (
-        <div className="col-md-8">
         <form>
-        <label>{beer.name}</label>
+      <h3>{beer.name}</h3>
      <div className="form-group">
      <label>Beer Name</label>
      <input type="text" className="form-control" ref="name" defaultValue={beer.name}/>
@@ -206,17 +224,22 @@ var OnTapList = React.createClass({
      </div>
      <button onClick={that.handleUpdate.bind(this, beer._id)} type="submit" className="btn btn-default"> Submit </button>
      </form>
-        </div>
-
         )
 }.bind(this)); 
 
 var beerData = this.props.data.map(function(beer){
      return (
        <div>
-       {beer.name}
-        <button onClick={that.toggle.bind(that, beer.name)}><i className="fa fa-pencil"></i></button>
-        <button  onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-minus-circle" ></i></button>
+            <table className="table">
+                   <tbody>
+                     <tr>
+                      <td style={{width:"80%"}}>{beer.name}</td>
+                      <td style={{width:"10%"}}><button onClick={that.toggle.bind(that, beer.name)}><i className="fa fa-pencil"></i></button></td>
+                      <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-minus-circle" ></i></button></td>
+
+                     </tr>
+                   </tbody>
+                 </table>
        </div>
        )
    });
@@ -224,8 +247,11 @@ var beerData = this.props.data.map(function(beer){
 return (
 
   <div className="container">
-  <div className="row">
+  <h1>On Tap Now:</h1>
+  <div className="col-md-4 Update">
   {beerData}
+  </div>
+  <div className="col-md-8">
   {updateBeerForm}
   </div>
   </div>
