@@ -32,37 +32,89 @@ var RateForm = React.createClass({
   },
 
 render: function() {
-      return (
+      
+        return(
+          <div className="container">
+          <div className="container">  
+          <div className="col-sm-6 col-md-4">
+          <div className="beer-display">
+          <div className="row">
+          <div className="well-beer">
+          <img src="http://www.dramshopmt.com/wp-content/uploads/2015/09/Draught-Works-Lauren-Bacall-Key-Lime-Sour-600x800.jpeg" className="img-responsive"/>
+          </div>
+          </div>
+          </div>
+          </div>
+          <div className="col-sm-6 col-md-6">
+          <div className="row">
+          <h1>Beer Name you are Rating</h1>
+          <hr/>
+          <form action="" method="POST" role="form">
 
-               <div className="col-sm-6 col-md-8">
-                <div className="row">
-                <h1>Enter New Beers</h1>
-                <hr/>
-                <form>
-                  <div className="form-group">
-                      <label>Beer Name</label>
-                      <input type="text" className="form-control" ref="aroma" placeholder="Beer Name"/>
-                  </div>
-                  <div className="form-group">
-                      <label>appearance URL</label>
-                      <input type="text" className="form-control" ref="appearance" placeholder="appearance URL"/>
-                  </div>
+          <div className="form-group">
+          <h3>Tasting Notes</h3>
+          <button className="tasting-notes">Coffeeish</button>
+          <button className="tasting-notes">Caramelly</button>
+          <button className="tasting-notes">Fresh</button>
+          <button className="tasting-notes">Herbal</button>
+          <button className="tasting-notes">Earthy</button>
 
-                  <div className="form-group">
-                      <label>Type of Beer </label>
-                      <input type="author" className="form-control" ref="taste" placeholder="Type of Beer"/>
-                  </div>
-                  <div className="form-group">
-                      <label>overall</label>
-                      <input className="form-control" ref="overall" placeholder="overall"/>
-                  </div>
-                  <button onClick={this.handleSubmit} type="submit" className="btn btn-default"> Submit </button>
-                </form>
-               </div>
-               </div>
+          <h3>Over All Rating</h3>
 
-          );
+          <input id="checkbox1" className="glyphicon glyphicon-star-empty" type="checkbox" />
+          <input id="checkbox1" className="glyphicon glyphicon-star-empty" type="checkbox" />
+          <input id="checkbox1" className="glyphicon glyphicon-star-empty" type="checkbox" />
+          <input id="checkbox1" className="glyphicon glyphicon-star-empty" type="checkbox" />
+          <input id="checkbox1" className="glyphicon glyphicon-star-empty" type="checkbox" />
+
+
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
+          </form>
+          </div>
+          </div>
+          </div>
+          </div>
+          )
+
       }
-});
+});     
 
-React.render(<RateForm url="/api/ratings"/>, document.getElementById('rateForm'));
+
+var App = React.createClass({
+  getInitialState: function(){
+    return {data: []};
+  },
+
+  loadRatings: function(beer) {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      cache: false,
+      success: function(data){
+        console.log("inside success")
+        this.setState({data:data});
+      }.bind(this),
+      error: function(xhr, status, err){
+        console.log("Broken url is " + this.props.url)
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+
+  componentDidMount: function(){
+    this.loadRatings();
+  },
+
+
+  render: function() {
+    return (
+      <div>
+      <RateForm data={this.state.data}/>
+
+      </div>
+      )
+  }
+})
+
+React.render(<App url="/api/ratings/"/>, document.getElementById('rateForm'));
