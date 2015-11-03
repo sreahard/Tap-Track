@@ -59,12 +59,12 @@ render: function() {
                       <input className="form-control" ref="overall" placeholder="overall"/>
                   </div>
                   <button onClick={this.handleSubmit} type="submit" className="btn btn-default"> Submit </button>
-              </form>
+                </form>
                </div>
                </div>
 
           );
-  }
+      }
 });
 
 React.render(<RateForm url="/api/ratings"/>, document.getElementById('rateForm'));
