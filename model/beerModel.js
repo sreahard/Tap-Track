@@ -8,7 +8,8 @@ var BeerSchema = new mongoose.Schema({
 	abv: String,
 	location: String,
 	brewery: String,
-	description: String
+	description: String,
+	rating: Array 
 });
 
 module.exports = mongoose.model('Beer', BeerSchema);
