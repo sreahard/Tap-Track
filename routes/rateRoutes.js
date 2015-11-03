@@ -18,17 +18,15 @@ router.route('/')
 	})
 
 	.post(function(req, res){
-		var aroma =  req.body.aroma;
-		var appearance = req.body.appearance;
-		var category = req.body.category;
-		var taste = req.body.taste;
+		var beer_id =  req.body.beer_id;
+		var tasting_note = req.body.tasting_note;
+		var user_id = req.body.user_id;
 		var overall = req.body.overall;
 		mongoose.model('Rate').create({
-			aroma: aroma,
-			appearance: appearance,
-			category: category,
-			taste: taste,
+			beer_id: beer_id,
+			tasting_note: tasting_note,
 			overall: overall,
+			user_id: user_id
 
 		},
 		function(err, rating){
@@ -56,10 +54,9 @@ router.route('/:id')
 		mongoose.model('Rate').findById(req.params.id, function(err, rating){
 			if(err)
 				res.send(err);
-			rating.aroma = req.body.aroma;
-			rating.appearance = req.body.appearance;
-			rating.category = req.body.category;
-			rating.taste = req.body.taste;
+			rating.beer_id = req.body.beer_id;
+			rating.tasting_note = req.body.tasting_note;
+			rating.user_id = req.body.user_id;
 			rating.overall = req.body.overall;
 			console.log(JSON.stringify(rating));
 
