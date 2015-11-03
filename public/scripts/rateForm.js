@@ -4,16 +4,16 @@ var RateForm = React.createClass({
 
       e.preventDefault();
 
-      var aroma = React.findDOMNode(this.refs.aroma).value.trim();
-      var appearance = React.findDOMNode(this.refs.appearance).value.trim();
-      var taste = React.findDOMNode(this.refs.taste).value.trim();
+      var beer_id = React.findDOMNode(this.refs.beer_id).value.trim();
+      var tasting_note = React.findDOMNode(this.refs.tasting_note).value.trim();
+      var user_id = React.findDOMNode(this.refs.user_id).value.trim();
       var overall = React.findDOMNode(this.refs.overall).value.trim();
 
-      if(!aroma){
+      if(!beer_id){
         return;
       }
 
-      var data = ({aroma: aroma, appearance: appearance, taste: taste, overall: overall, abv: abv, location: location, brewery: brewery, description: description});
+      var data = ({beer_id: beer_id, tasting_note: tasting_note, user_id: user_id, overall: overall, abv: abv, location: location, brewery: brewery, description: description});
 
           $.ajax({
               url: this.props.url,
@@ -57,12 +57,12 @@ render: function() {
                       <input className="form-control" ref="overall" placeholder="overall"/>
                   </div>
                   <button onClick={this.handleSubmit} type="submit" className="btn btn-default"> Submit </button>
-              </form>
+                </form>
                </div>
                </div>
 
           );
-  }
+      }
 });
 
 React.render(<RateForm url="/api/ratings"/>, document.getElementById('rateForm'));
