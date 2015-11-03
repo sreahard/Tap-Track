@@ -6,7 +6,6 @@ h3{
   letter-spacing: -1px;
   margin: 10px 0px 15px 0px;
   padding: 0px;
-  text-align: center;
 }
 h4{
 	color: #777777;
@@ -14,7 +13,6 @@ h4{
   font-size: 16px;
   margin: 10px 0px 25px 0px;
   padding: 0px;
-  text-align: center;
 }
 h4.form{
   color: #777777;
@@ -155,6 +153,20 @@ p.rating{
   background-color: #222;
   border: 1px solid #dddddd;
   border-radius: 28px;
+}
+.tasting-notes {
+  min-width: 5px;
+  margin: 3px 3px 3px 3px;
+  list-style: none;
+  text-align: center;
+  font-family: "Noto",Helvetica,Arial,sans-serif;
+  font-size: 10px;
+  color:#000;
+  display: inline-block;
+  padding: 5px 14px;
+  background-color: #E0E0E0;
+  border: 1px solid #dddddd;
+  border-radius: 15px;
 }
 .beer-cat:hover {
   color: #222;  
