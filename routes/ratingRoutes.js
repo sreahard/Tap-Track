@@ -33,7 +33,7 @@ router.route('/:id')
 		});
 	})
 
-	.put(function(req, res) {
+.put(function(req, res) {
 		mongoose.model('Beer').findById(req.params.id, function(err, beer){
 			if(err)
 				res.send(err);
