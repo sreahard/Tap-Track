@@ -18,29 +18,11 @@ router.route('/')
 	})
 
 	.post(function(req, res){
-		var name =  req.body.name;
-		var image = req.body.image;
-		var category = req.body.category;
-		var ibu = req.body.ibu;
-		var abv = req.body.abv;
-		var location = req.body.location;
-		var brewery = req.body.brewery;
-		var description = req.body.description;
-		var rating = req.body.rating;
+
+		var newBeer = req.body; //{name:..., image:...}
 
 
-		mongoose.model('Beer').create({
-			name: name,
-			image: image,
-			category: category,
-			ibu: ibu,
-			abv: abv,
-			location: location,
-			brewery: brewery,
-			description: description,
-			rating: rating
-
-		},
+		mongoose.model('Beer').create(newBeer,
 		function(err, beer){
 			if(err){
 				res.send("not working", err);
@@ -49,6 +31,7 @@ router.route('/')
 				res.send(beer);
 			}
 		});
+
 	});
 
 router.route('/:id')
