@@ -8,7 +8,7 @@ var DATA = {
   "image": "http://www.dramshopmt.com/wp-content/uploads/2015/08/Terminal-Gravity-eagle-Cap-IPA-600x800.jpeg",
   "location": "Missoula, MT",
   "name": "Rye IPA",
-  "rating": [
+  "rating": 
     {
       "overall": 3,
       "tasting_notes": [
@@ -16,9 +16,9 @@ var DATA = {
         "strong"
       ]
     }
-  ]
+  
 }
 
-var beer = DATA.rating[0].tasting_notes;
+var beer = DATA.rating.tasting_notes;
 
 console.log(beer)

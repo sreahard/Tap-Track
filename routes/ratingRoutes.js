@@ -37,11 +37,13 @@ router.route('/:id')
 		mongoose.model('Beer').findById(req.params.id, function(err, beer){
 			if(err)
 				res.send(err);
-			
-			beer.rating[0].tasting_notes = req.body.tasting_notes;
-			beer.rating[0].overall = req.body.overall;
-			beer.rating[0].user_id = req.body.user_id;
-			
+
+			beer.rating.tasting_notes = req.body.tasting_notes;
+			beer.rating.overall = req.body.overall;
+			// beer.rating[0].user_id = req.body.user_id;
+
+
+
 			console.log(JSON.stringify(beer));
 
 			beer.save(function(err) {
