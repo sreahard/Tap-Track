@@ -1,25 +1,25 @@
 var RateForm = React.createClass({
 
-  handleSubmit: function(e){
+  handleSubmit: function(id){
 
-      e.preventDefault();
+      var id = id;
 
-      var beer_id = React.findDOMNode(this.refs.beer_id).value.trim();
       var tasting_note = React.findDOMNode(this.refs.tasting_note).value.trim();
-      var user_id = React.findDOMNode(this.refs.user_id).value.trim();
       var overall = React.findDOMNode(this.refs.overall).value.trim();
 
-      if(!beer_id){
+     console.log(id)
+
+      if(!overall){
         return;
       }
 
-      var data = ({beer_id: beer_id, tasting_note: tasting_note, user_id: user_id, overall: overall, abv: abv, location: location, brewery: brewery, description: description});
+      var data = ({tasting_note: tasting_note, overall: overall});
 
           $.ajax({
-              url: this.props.url,
+              url: this.props.url + id,
               dataType: 'json',
               data: data,
-              type:'POST',
+              type:'PUT',
                   success: function(response){
                   console.log("posting data!",data, response)
                   document.location='/'
@@ -31,12 +31,31 @@ var RateForm = React.createClass({
           })
   },
 
+    getInitialState: function(){
+    return {
+      fltr: null
+    };
+  },
+
+  toggle: function (name) {
+    console.log(name);
+    this.setState({
+      fltr: name
+    })
+  },
+  reToggle: function (id) {
+    this.setState({
+      fltr: null
+    })
+  },
+
 render: function() {
 
     var that = this;
 
     var getBeerData = this.props.data.map(function(beer){
-      
+    if (beer.name === this.state.fltr)
+
         return(
           <div className="container">  
           <div className="col-sm-6 col-md-4">
@@ -52,6 +71,20 @@ render: function() {
           <div className="row">
           <h1>{beer.name}</h1>
           <hr/>
+          <form>
+
+          <div className="form-group">
+          <h3>Tasting Notes</h3>
+
+          <input type="text" className="form-control" ref="tasting_note"/>
+          <h3>Over All Rating</h3>
+
+          <input type="text" className="form-control" ref="overall"/>  
+
+
+          </div>
+          <button onClick={that.handleSubmit.bind(this, beer._id)} type="submit" className="btn btn-primary">Submit</button>
+          </form>
           </div>
           </div>
           </div>
@@ -59,42 +92,33 @@ render: function() {
       
     }.bind(this));
 
-    var rateBeerForm = this.props.data.map(function(beer){
-      
-        return(
-
-          <form action="" method="POST" role="form">
-
-          <div className="form-group">
-          <h3>Tasting Notes</h3>
-          <button className="tasting-notes">Coffeeish</button>
-          <button className="tasting-notes">Caramelly</button>
-          <button className="tasting-notes">Fresh</button>
-          <button className="tasting-notes">Herbal</button>
-          <button className="tasting-notes">Earthy</button>
-
-          <h3>Over All Rating</h3>
-
-          <input id="checkbox1" className="glyphicon glyphicon-star-empty" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star-empty" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star-empty" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star-empty" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star-empty" type="checkbox" />
-
-
-          </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
-          </form>
-
-           )
-      
-    });
+var beerData = this.props.data.map(function(beer){
+     return (
+       <div>
+            <table className="table">
+                   <tbody>
+                     <tr>
+                      <td style={{width:"80%"}}>{beer.name}</td>
+                      <td style={{width:"10%"}}><button onClick={that.toggle.bind(that, beer.name)}><i className="fa fa-pencil"></i></button></td>
+                     </tr>
+                   </tbody>
+                 </table>
+       </div>
+       )
+   });
 
 return (
 
   <div className="container">
-  {getBeerData}
-  {rateBeerForm}
+           <div className="col-md-4">
+
+        {beerData}
+        </div>
+         <div className="col-md-8">
+
+        {getBeerData}
+        </div>
+
   </div>
   );
   }
@@ -130,11 +154,23 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-      <RateForm data={this.state.data}/>
+      <RateForm data={this.state.data} />
 
       </div>
       )
   }
 })
 
-React.render(<App url="/api/beer/"/>, document.getElementById('rateForm'));
+React.render(<App url="/api/rating/"/>, document.getElementById('rateForm'));
+
+          // <input id="checkbox1" className="glyphicon glyphicon-star-empty" ref="overall" defaultValue="1" type="checkbox" />
+          // <input id="checkbox1" className="glyphicon glyphicon-star-empty" ref="overall" defaultValue="2" type="checkbox" />
+          // <input id="checkbox1" className="glyphicon glyphicon-star-empty" ref="overall" defaultValue="3" type="checkbox" />
+          // <input id="checkbox1" className="glyphicon glyphicon-star-empty" ref="overall" defaultValue="4" type="checkbox" />
+          // <input id="checkbox1" className="glyphicon glyphicon-star-empty" ref="overall" defaultValue="5" type="checkbox" />
+
+          // <button className="tasting-notes" ref="tasting_note" defaultValue="coffeeish">Coffeeish</button>
+          // <button className="tasting-notes" ref="tasting_note" defaultValue="caramelly">Caramelly</button>
+          // <button className="tasting-notes" ref="tasting_note" defaultValue="fresh">Fresh</button>
+          // <button className="tasting-notes" ref="tasting_note" defaultValue="herbal">Herbal</button>
+          // <button className="tasting-notes" ref="tasting_note" defaultValue="earthy">Earthy</button>

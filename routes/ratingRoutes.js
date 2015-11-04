@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Beer = require('../model/beerModel');
 
+
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.route('/')
@@ -17,41 +18,11 @@ router.route('/')
 		});
 	})
 
-	.post(function(req, res){
-		var name =  req.body.name;
-		var image = req.body.image;
-		var category = req.body.category;
-		var ibu = req.body.ibu;
-		var abv = req.body.abv;
-		var location = req.body.location;
-		var brewery = req.body.brewery;
-		var description = req.body.description;
-		var rating = req.body.rating;
 
-
-		mongoose.model('Beer').create({
-			name: name,
-			image: image,
-			category: category,
-			ibu: ibu,
-			abv: abv,
-			location: location,
-			brewery: brewery,
-			description: description,
-			rating: rating
-
-		},
-		function(err, beer){
-			if(err){
-				res.send("not working", err);
-			} else {
-				console.log("New beer named " + beer + " created!");
-				res.send(beer);
-			}
-		});
-	});
 
 router.route('/:id')
+	
+
 	.get(function(req, res) {
 		mongoose.model('Beer').findById({
 			_id: req.params.id
@@ -66,17 +37,11 @@ router.route('/:id')
 		mongoose.model('Beer').findById(req.params.id, function(err, beer){
 			if(err)
 				res.send(err);
-			beer.name = req.body.name;
-			beer.image = req.body.image;
-			beer.category = req.body.category;
-			beer.ibu = req.body.ibu;
-			beer.abv = req.body.abv;
-			beer.location = req.body.location;
-			beer.brewery = req.body.brewery;
-			beer.description = req.body.description;
-			beer.rating = req.body.rating;
-
-
+			
+			beer.rating[0].tasting_notes = req.body.tasting_notes;
+			beer.rating[0].overall = req.body.overall;
+			beer.rating[0].user_id = req.body.user_id;
+			
 			console.log(JSON.stringify(beer));
 
 			beer.save(function(err) {
@@ -87,6 +52,8 @@ router.route('/:id')
 
 		});
 	})
+
+//get all ratings by beer ID
 
 	.delete(function(req, res) {
 		mongoose.model('Beer').remove({

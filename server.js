@@ -19,8 +19,7 @@ var db = require('./model/db');
 var beerModel = require ('./model/beerModel');
 var beerRoutes = require ('./routes/beerRoutes');
 
-var ratingModel = require ('./model/ratingModel');
-var rateRoutes = require ('./routes/rateRoutes');
+var ratingRoutes = require ('./routes/ratingRoutes');
 
 
 
@@ -28,7 +27,8 @@ var rateRoutes = require ('./routes/rateRoutes');
 
 
 app.use('/api/beer', beerRoutes);
-app.use('/api/ratings', rateRoutes);
+app.use('/api/rating', ratingRoutes);
+
 
 require('./config/passport')(passport);
 
