@@ -4,16 +4,16 @@ var RateForm = React.createClass({
 
       var id = id;
 
-      var tasting_note = React.findDOMNode(this.refs.tasting_note).value.trim();
+      var tasting_notes = React.findDOMNode(this.refs.tasting_notes).value.trim();
       var overall = React.findDOMNode(this.refs.overall).value.trim();
 
-     console.log(id)
+     console.log(id);
 
       if(!overall){
         return;
       }
 
-      var data = ({tasting_note: tasting_note, overall: overall});
+      var data = ({tasting_notes: tasting_notes, overall: overall});
 
           $.ajax({
               url: this.props.url + id,
@@ -35,7 +35,7 @@ var RateForm = React.createClass({
     return {
       fltr: null
     };
-  },
+  },  
 
   toggle: function (name) {
     console.log(name);
@@ -58,7 +58,7 @@ render: function() {
 
         return(
           <div className="container">  
-          <div className="col-sm-6 col-md-4">
+          <div className="col-sm-3 col-md-3">
           <div className="beer-display">
           <div className="row">
           <div className="well-beer">
@@ -67,7 +67,7 @@ render: function() {
           </div>
           </div>
           </div>
-          <div className="col-sm-6 col-md-6">
+          <div className="col-sm-5 col-md-5">
           <div className="row">
           <h1>{beer.name}</h1>
           <hr/>
@@ -76,14 +76,14 @@ render: function() {
           <div className="form-group">
           <h3>Tasting Notes</h3>
 
-          <input type="text" className="form-control" ref="tasting_note"/>
+          <input type="text" className="form-control" ref="tasting_notes"/>
           <h3>Over All Rating</h3>
 
           <input type="text" className="form-control" ref="overall"/>  
 
 
           </div>
-          <button onClick={that.handleSubmit.bind(this, beer._id)} type="submit" className="btn btn-primary">Submit</button>
+          <button onClick={that.handleSubmit.bind(this, beer._id)} type="submit" className="btn btn-primary">Submit {beer._id}</button>
           </form>
           </div>
           </div>
@@ -98,8 +98,8 @@ var beerData = this.props.data.map(function(beer){
             <table className="table">
                    <tbody>
                      <tr>
-                      <td style={{width:"80%"}}>{beer.name}</td>
-                      <td style={{width:"10%"}}><button onClick={that.toggle.bind(that, beer.name)}><i className="fa fa-pencil"></i></button></td>
+                      <td style={{width:"65%"}}>{beer.name}</td>
+                      <td style={{width:"35%"}}><button onClick={that.toggle.bind(that, beer.name)}><i className="fa fa-beer"></i> Rate</button></td>
                      </tr>
                    </tbody>
                  </table>
@@ -110,7 +110,7 @@ var beerData = this.props.data.map(function(beer){
 return (
 
   <div className="container">
-           <div className="col-md-4">
+           <div className="col-md-3">
 
         {beerData}
         </div>
@@ -154,7 +154,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-      <RateForm data={this.state.data} />
+      <RateForm data={this.state.data} url="/api/rating/"/>
 
       </div>
       )

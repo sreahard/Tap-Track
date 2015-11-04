@@ -42,8 +42,6 @@ router.route('/:id')
 			beer.rating.overall = req.body.overall;
 			// beer.rating[0].user_id = req.body.user_id;
 
-
-
 			console.log(JSON.stringify(beer));
 
 			beer.save(function(err) {
