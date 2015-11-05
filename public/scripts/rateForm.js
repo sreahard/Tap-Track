@@ -1,3 +1,4 @@
+//added a comment to the top of rateForm to force an update
 var RateForm = React.createClass({
 
   handleSubmit: function(id){
