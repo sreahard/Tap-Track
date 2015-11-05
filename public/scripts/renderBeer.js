@@ -10,6 +10,7 @@ var BeerList = React.createClass({
             fltr: category
         })
     },
+
     reToggle: function (category) {
         this.setState({
             fltr: null
@@ -40,19 +41,21 @@ var BeerList = React.createClass({
                 )
         });
 
-        // var imagePlaceHolder = this.props.data.map(function(beer){
-        //     if (beer.image === null) {
-        //         return "http://www.beerglasseshq.com/images/pintglass.gif"
-        //     } else {
-        //         return beer.image
-        //     }
-        // });
-        // var beerInfo = this.props.data.map(function(beerInfo){
-        //     return (
-        //         <button className="btn btn-s btn-default" onClick={that.toggle.bind(that, beerInfo)}>{beerInfo.name}</button>
-        //         )
-        // });
+
+
         var beerData = this.props.data.map(function(beer){
+
+            var sum=0;
+            for(var i = 0; i < beer.ratings.length; i++){
+                var overall = beer.ratings[i].overall;
+                sum += beer.ratings[i].overall;
+
+                }
+            var average = Math.round(sum/beer.ratings.length);
+
+
+
+                            
            if (beer.category === this.state.fltr || !this.state.fltr)
                return (
                     <div className="col-sm-6 col-md-4">
@@ -69,7 +72,17 @@ var BeerList = React.createClass({
                    <p className="brewery">
                    {beer.brewery}
                    </p>
-                   <p className="rating"><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star-half-o"></i><i className="fa fa-star-o"></i></p>
+                   <p className="rating">
+                   {average > 0 ? <i className="fa fa-star"></i> : ''}
+                   {average > 1 ? <i className="fa fa-star"></i> : ''}
+                   {average > 2 ? <i className="fa fa-star"></i> : ''}
+                   {average > 3 ? <i className="fa fa-star"></i> : ''}
+                   {average > 4 ? <i className="fa fa-star"></i> : ''}
+                   {average > 5 ? <i className="fa fa-star"></i> : ''}
+                   {average > 6 ? <i className="fa fa-star"></i> : ''}
+                   </p> 
+
+
                     <a href="/rate"><button type="button" className="btn btn-s btn-default"><i className="fa fa-beer"></i> Rate</button></a> &nbsp;
                     <button type="button" className="btn btn-s btn-default"><i className="fa fa-info-circle"></i> {beer.name}</button> 
                     </div>
@@ -77,8 +90,9 @@ var BeerList = React.createClass({
                    </div>
                    </div>
                    </div>
+
                    )
-}.bind(this));
+            }.bind(this));
 return (
 
     <div>
@@ -130,4 +144,4 @@ render: function() {
 }
 })
 
-React.render(<App url="/api/beer/"/>, document.getElementById("beerPosts") )
+React.render(<App url="/api/rating/"/>, document.getElementById("beerPosts"))
