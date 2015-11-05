@@ -1,11 +1,35 @@
+var tastingNotes = ["malty", "breadlike", "rich", "deep", "roasty", "cereal", "coffeeish", "caramelly", "toffee-like", "molasses-like", "smoky", "sweet", "autumnal","burnt cream", "oatmeal", "rustic", "layered", "piney", "citrusy", "grapefruity", "earthy", "musty", "spicy", "sharp", "bright", "fresh", "herbal", "lemony", "newly-mown lawn", "floral", "springlike", "brilliant", "minty", "pungent", "grassy"]
+
 //added a comment to the top of rateForm to force an update
 var RateForm = React.createClass({
+  
+
+
+
 
   handleSubmit: function(id){
   
       var id = id;
 
-      var tasting_notes = React.findDOMNode(this.refs.tasting_notes).value.trim();
+
+      var tasting_notes = React.findDOMNode(this.refs.tasting_notes).value;
+      
+      
+
+      var selectedNote = []
+      for(var i = 0; i < tastingNotes.length -1; i++){
+
+
+        var noteKey = tastingNotes[i];
+
+        var domNodeNote = React.findDOMNode(this.refs[noteKey]);
+        alert(domNodeNote);
+        if (domNodeNote.checked === true){
+          selectedNote.push(noteKey);
+          alert(selectedNote);
+        }
+      }
+      // for(var i = 0; i > )
 
       //Goal: Find highest value that has checked===true
       for(var i = 5; i >= 1; i--){
@@ -16,6 +40,7 @@ var RateForm = React.createClass({
           break;
         }
       }
+
 
      console.log(id);
 
@@ -68,7 +93,9 @@ var RateForm = React.createClass({
     arr.forEach(function(arrValue) {
       var refKey = 'overall' + arrValue;
       React.findDOMNode(self.refs[refKey]).checked = false
-    })
+        console.log(refKey);
+      })
+
     
     var ratingValue = Number(event.target.value)
     switch (ratingValue) {
@@ -85,9 +112,23 @@ var RateForm = React.createClass({
     }
   },
 
-render: function() {
+  handleSelect: function(event){
+    this.setState(event.target.checked = true);
+  },
+
+  render: function() {
 
     var that = this;
+
+    var tastingNotesMap = this.props.notes.map(function(note){
+      return(
+          <div className="btn-group" data-toggle="buttons">
+          <label className="btn tasting-notes">
+          <input id="checkbox2" type="checkbox" onChange={this.handleSelect} ref="tasting_notes" defaultValue={note}/>{note}
+          </label>
+          </div>)
+
+    }.bind(this));
 
     var getBeerData = this.props.data.map(function(beer){
     if (beer.name === this.state.fltr)
@@ -111,19 +152,20 @@ render: function() {
 
           <div className="form-group">
           <h3>Tasting Notes</h3>
+          
+          {tastingNotesMap}
 
-          <input type="text" className="form-control" ref="tasting_notes"/>
-          <h3>Over All Rating</h3>
-          <input id="checkbox1" className="glyphicon glyphicon-star-empty" ref="overall1" onChange={this.handleOverall} defaultValue="1" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star-empty" ref="overall2" onChange={this.handleOverall} defaultValue="2" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star-empty" ref="overall3" onChange={this.handleOverall} defaultValue="3" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star-empty" ref="overall4" onChange={this.handleOverall} defaultValue="4" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star-empty" ref="overall5" onChange={this.handleOverall} defaultValue="5" type="checkbox" />
+          <h3>Overall Rating</h3>
+          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall1" onChange={this.handleOverall} defaultValue="1" type="checkbox" />
+          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall2" onChange={this.handleOverall} defaultValue="2" type="checkbox" />
+          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall3" onChange={this.handleOverall} defaultValue="3" type="checkbox" />
+          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall4" onChange={this.handleOverall} defaultValue="4" type="checkbox" />
+          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall5" onChange={this.handleOverall} defaultValue="5" type="checkbox" />
 
 
 
           </div>
-          <button onClick={that.handleSubmit.bind(this, beer._id)} type="submit" className="btn btn-primary">Submit {beer._id}</button>
+          <button onClick={that.handleSubmit.bind(this, beer._id)} type="submit" className="btn">Submit</button>
           </form>
           </div>
           </div>
@@ -194,7 +236,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-      <RateForm data={this.state.data} url="/api/rating/"/>
+      <RateForm data={this.state.data} url="/api/rating/" notes={tastingNotes}/>
 
       </div>
       )
