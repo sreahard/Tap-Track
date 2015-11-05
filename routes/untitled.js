@@ -50,5 +50,5 @@ var sum=0;
 
     console.log(sum/DATA.ratings.length);
 
-
+get beerId---->get overall ratings, add them and divide by the count---->put them on the image
 
