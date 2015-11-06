@@ -109,7 +109,7 @@ var OnTapList = React.createClass({
   deleteClick: function(id) {
     var id = id;
     console.log(id);
-    alert("Are you sure you want to delete this beer?");
+    confirm("Are you sure you want to delete this beer?");
 
     $.ajax({
       url: this.props.url + id,

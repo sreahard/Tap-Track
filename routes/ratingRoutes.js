@@ -27,7 +27,7 @@ router.route('/beers/:beerId/rating')
 		beer.ratings.push({
 			tasting_notes: newRating.tasting_notes,
 			overall: newRating.overall,
-			user_id: req.user._id
+			user_id: newRating.user_id
 			//TODO: After passport is completed
 		})
 		
