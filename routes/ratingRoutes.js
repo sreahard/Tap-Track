@@ -27,7 +27,8 @@ router.route('/beers/:beerId/rating')
 		beer.ratings.push({
 			tasting_notes: newRating.tasting_notes,
 			overall: newRating.overall,
-			// user_id: req.user._id //TODO: After passport is completed
+			user_id: req.user._id
+			//TODO: After passport is completed
 		})
 		
 		// Save the updated beer back to the DB

@@ -21,6 +21,8 @@ var beerRoutes = require ('./routes/beerRoutes');
 
 var ratingRoutes = require ('./routes/ratingRoutes');
 
+var userRoutes = require ('./routes/userRoutes')
+
 
 
 //Routes========================================================================
@@ -28,6 +30,7 @@ var ratingRoutes = require ('./routes/ratingRoutes');
 
 app.use('/api/beer', beerRoutes);
 app.use('/api/rating', ratingRoutes);
+app.use('/api/users', userRoutes);
 
 
 require('./config/passport')(passport);
@@ -54,7 +57,7 @@ app.get('/about', function(req, res) {
 });
 
 app.get('/test', function(req, res) {
-    res.render('pages/test');
+    res.render('/test');
 });
 
 app.get('/beer_profile', function(req, res) {
