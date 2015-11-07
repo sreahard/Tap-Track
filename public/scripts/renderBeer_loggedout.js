@@ -4,7 +4,6 @@ var BeerList = React.createClass({
       var id = id;
 
       var tasting_notes = React.findDOMNode(this.refs.tasting_notes).value.trim();
-      var user_id = React.findDOMNode(this.refs.user_id).value.trim();
 
       //Goal: Find highest value that has checked===true
       for(var i = 5; i >= 1; i--){
@@ -22,7 +21,7 @@ var BeerList = React.createClass({
         return;
       }
 
-      var data = ({tasting_notes: tasting_notes, overall: overall, user_id: user_id});
+      var data = ({tasting_notes: tasting_notes, overall: overall});
 
           $.ajax({
               url: this.props.url + 'beers/' +id + '/rating',
@@ -127,6 +126,8 @@ var BeerList = React.createClass({
                 }
             var average = Math.round(sum/beer.ratings.length);
 
+
+
                             
            if (beer.category === this.state.fltr || !this.state.fltr)
                return (
@@ -155,7 +156,7 @@ var BeerList = React.createClass({
                    </p> 
 
 
-                    <button type="button" className="btn btn-s btn-default" onClick={that.toggleRating.bind(that, beer._id)}><i className="fa fa-beer"></i>Rate</button> &nbsp;
+                    <a href = "/login"><button type="button" className="btn btn-s btn-default" onClick={that.toggleRating.bind(that, beer._id)}><i className="fa fa-beer"></i>Rate</button> </a>&nbsp;
                     </div>
                     </div>
                    </div>
@@ -163,48 +164,7 @@ var BeerList = React.createClass({
                    </div>
 
                    )
-                    else if (beer._id === this.state.fltr || !this.state.fltr)
-               return (
-          <div className="container">  
-          <div className="col-sm-3 col-md-3">
-          <div className="beer-display">
-          <div className="row">
-          <div className="well-beer">
-          <img src={beer.image} className="img-responsive"/>
-          </div>
-          </div>
-          </div>
-          </div>
-          <div className="col-sm-5 col-md-5">
-          <div className="row">
-          <h1>{beer.name}</h1>
-          <hr/>
-          <form>
 
-          <div className="form-group">
-          
-
-          <input type="checkbox" className="form-control" ref="tasting_notes" defaultValue=""/>
-
-
-          <h3>Overall Rating</h3>
-          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall1" onChange={this.handleOverall} defaultValue="1" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall2" onChange={this.handleOverall} defaultValue="2" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall3" onChange={this.handleOverall} defaultValue="3" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall4" onChange={this.handleOverall} defaultValue="4" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall5" onChange={this.handleOverall} defaultValue="5" type="checkbox" />
-          
-          <input type="checkbox" className="form-control" ref="user_id"/>
-
-
-          </div>
-          <button onClick={that.handleSubmit.bind(this, beer._id)} type="submit" className="btn btn-primary">Submit</button>
-          </form>
-          </div>
-          </div>
-          </div>
-
-                   )
             }.bind(this));
             
 
@@ -260,4 +220,4 @@ render: function() {
 }
 })
 
-React.render(<App url="/api/rating/"/>, document.getElementById("beerPosts"))
+React.render(<App url="/api/rating/"/>, document.getElementById("beerPostsLoggedOut"))

@@ -60,13 +60,17 @@ app.get('/test', function(req, res) {
     res.render('/test');
 });
 
+app.get('/viewbeers', function(req, res) {
+    res.render('pages/test3');
+});
+
 app.get('/beer_profile', function(req, res) {
     res.render('pages/beer_profile');
 });
 
-app.get('/enter_beer', function(req, res) {
-    res.render('pages/enter_beer');
-});
+// app.get('/enter_beer', function(req, res) {
+//     res.render('pages/enter_beer');
+// });
 
 app.get('/rate', function(req, res) {
     res.render('pages/rate');

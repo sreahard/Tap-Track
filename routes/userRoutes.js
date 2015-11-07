@@ -20,10 +20,14 @@ module.exports = function(app, passport) {
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/test2', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+    app.use(function (req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  next();
+});
 
     // =====================================
     // SIGNUP ==============================
@@ -55,6 +59,11 @@ module.exports = function(app, passport) {
 
         app.get('/enter_beers', isLoggedIn, function(req, res) {
         res.render('test.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+    app.get('/test2', isLoggedIn, function(req, res) {
+        res.render('test2.ejs', {
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -163,10 +172,11 @@ module.exports = function(app, passport) {
             return next();
 
         // if they aren't redirect them to the home page
-        console.log("You must be logged in")
         res.redirect('/');
     };
 };
+
+
 
 // APP GET PERMISSIONS FOR LOGGED IN USERS TO ENTER BEER
 

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <% include ./partials/head %></head>
+<body>
+
+<header>
+ <% include ./partials/header %>
+ </header>
+<div class="jumbotron">
+        <div align="center">
+            <% if (user.local.email === "suziequz@msn.com") { %>
+            	<a href="#beers"><button class="ghost-button-semi-transparent"> Drink Beer </button></a>
+
+            </div>
+            </div>
+            <div class="container spacer">
+    <main>
+        <div class="row" id="beers">
+
+            <div id="beerPosts"></div>
+            
+            
+        </div>
+
+    </main>
+</div>
+            	<% } else { %>
+             <a href="#beers"><button class="ghost-button-semi-transparent"> Rate Beer </button></a>
+            <button class="ghost-button-semi-transparent" data-toggle="modal" data-target="#myModal"> Log In </button>
+            <% } %>
+ 
+     </div>
+    </div>
+
+</div>
+</div>
+
+
+ <% include ./partials/footer %>
+
+</body>
+</html>
