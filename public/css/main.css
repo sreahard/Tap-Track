@@ -8,14 +8,15 @@ h3{
   padding: 0px;
 }
 h3.rating{
-  text-transform: uppercase;    
-  font-family: "Noto",Helvetica,Arial,sans-serif;
-  font-size: 20px;
   color: #FFCC00;
-  font-weight: 700;
-  letter-spacing: -1px;
-  margin: 10px 0px 15px 0px;
   padding: 4px;
+}
+h3.jumbo {
+  color:#FFF;
+  letter-spacing: 0px;
+  padding-top: 40px;
+  line-height: 1.5em;
+  text-shadow: 2px 2px 4px #000;
 }
 h4{
 	color: #777777;

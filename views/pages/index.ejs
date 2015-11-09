@@ -8,12 +8,15 @@
     <header>
         <% include ../partials/header %>
     </header>
-    <div class="jumbotronHomePage">
+        <% if (!user) { %>        
+            <div class="jumbotronHomePage">
         <div align="center">
 
         <a href="#beers"><button class="ghost-button-semi-transparent"> Drink Beer </button></a>
         <button class="ghost-button-semi-transparent" data-toggle="modal" data-target="#loginModal"> Log In </button>
+        <% } else { %>
 
+        <% } %>
         </div>
     </div>
 
