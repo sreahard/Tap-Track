@@ -28,6 +28,7 @@ router.route('/beers/:beerId/rating')
 			tasting_notes: newRating.tasting_notes,
 			overall: newRating.overall,
 			user_id: newRating.user._id	
+
 			//TODO: After passport is completed
 		})
 		

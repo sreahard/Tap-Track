@@ -47,31 +47,16 @@ app.use(express.static('public'));
 // use res.render to load up an ejs view file
 
 // index page 
-app.get('/', function(req, res) {
-    res.render('pages/index');
-});
 
 // about page 
-app.get('/about', function(req, res) {
-    res.render('pages/about');
-});
 
 app.get('/test', function(req, res) {
     res.render('/test');
 });
 
-app.get('/beer_profile', function(req, res) {
-    res.render('pages/beer_profile');
+app.get('/viewbeers', function(req, res) {
+    res.render('pages/test3');
 });
-
-app.get('/enter_beer', function(req, res) {
-    res.render('pages/enter_beer');
-});
-
-app.get('/rate', function(req, res) {
-    res.render('pages/rate');
-});
-
 
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); 
 app.use(passport.initialize());

@@ -5,8 +5,9 @@ module.exports = function(app, passport) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/', function(req, res) {
-        res.render('index.ejs'); // load the index.ejs file
-    });
+        res.render('./pages/index'); // load the index.ejs file
+    }); 
+
 
     // =====================================
     // LOGIN ===============================
@@ -17,13 +18,30 @@ module.exports = function(app, passport) {
         // render the page and pass in any flash data if it exists
         res.render('login.ejs', { message: req.flash('loginMessage') });
     });
+    app.get('/loginAdmin', function(req, res) {
+
+        // render the page and pass in any flash data if it exists
+        res.render('login.ejs', { message: req.flash('loginMessage') });
+    });
+
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+    app.post('/loginAdmin', passport.authenticate('local-login', {
+        successRedirect : '/enter_beer', // redirect to the secure profile section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
+    // middleware 
+    app.use(function (req, res, next) {
+      res.locals.login = req.isAuthenticated();
+      next();
+  });
 
     // =====================================
     // SIGNUP ==============================
@@ -53,12 +71,18 @@ module.exports = function(app, passport) {
         });
     });
 
-        app.get('/enter_beers', isLoggedIn, function(req, res) {
-        res.render('test.ejs', {
+
+    app.get('/enter_beer', isLoggedIn, function(req, res) {
+        res.render('./pages/enter_beer', {
             user : req.user // get the user out of session and pass to template
         });
     });
-
+    
+    // app.get('/verifed', isLoggedIn, function(req, res) {
+    //     res.render('./pages/index', {
+    //         user : req.user // get the user out of session and pass to template
+    //     });
+    // });    
 
     // =====================================
     // FACEBOOK ROUTES =====================
@@ -163,10 +187,13 @@ module.exports = function(app, passport) {
             return next();
 
         // if they aren't redirect them to the home page
-        console.log("You must be logged in")
         res.redirect('/');
     };
 };
+
+
+
+
 
 // APP GET PERMISSIONS FOR LOGGED IN USERS TO ENTER BEER
 
