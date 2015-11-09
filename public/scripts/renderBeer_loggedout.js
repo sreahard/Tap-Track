@@ -1,4 +1,4 @@
-var BeerList = React.createClass({
+var BeerListLoggedOut = React.createClass({
   handleSubmit: function(id){
   
       var id = id;
@@ -156,7 +156,7 @@ var BeerList = React.createClass({
                    </p> 
 
 
-                    <a href = "/login"><button type="button" className="btn btn-s btn-default" onClick={that.toggleRating.bind(that, beer._id)}><i className="fa fa-beer"></i>Rate</button> </a>&nbsp;
+                    <button type="button" className="btn btn-s btn-default" data-toggle="modal" data-target="#loginRateModal"><i className="fa fa-beer"></i>&nbsp;Rate</button>
                     </div>
                     </div>
                    </div>
@@ -214,7 +214,7 @@ componentDidMount: function(){
 render: function() {
     return (
         <div>
-        <BeerList data={this.state.data} url="/api/rating/"/>
+        <BeerListLoggedOut data={this.state.data} url="/api/rating/"/>
         </div>
         )
 }
