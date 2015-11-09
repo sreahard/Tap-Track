@@ -106,7 +106,7 @@ p.rating{
 
 .ghost-button-semi-transparent {
   display: inline-block;
-  width: 400px;
+  width: 380px;
   height:150px;
   padding: 30px 60px 30px 60px;
   color: #fff;
@@ -136,12 +136,25 @@ p.rating{
     margin: 0 auto;
     float: left;
 } 
-.jumbotron {
+.jumbotronHomePage {
     position: relative;
     background: #000 url("/images/barrel.jpg") center center;
     padding: 180px 0 180px 0;
     width: 100%;
     height:auto;
+    margin-bottom: 20px;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.jumbotron.alert {
+    position: relative;
+    text-align: center;
+    vertical-align: center;
+    padding: 20px;
+    width: 100%;
+    height:auto;
+    margin: 20px;
     background-size: cover;
     overflow: hidden;
 }
