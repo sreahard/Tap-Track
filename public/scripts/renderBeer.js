@@ -186,12 +186,8 @@ var BeerList = React.createClass({
 
           <input type="checkbox" className="form-control" ref="tasting_notes" defaultValue=""/>
 
-
-<<<<<<< HEAD
           <h3>Overall Rating</h3>
-=======
-          <h3>OverAll Rating</h3>
->>>>>>> master
+
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall1" onChange={this.handleOverall} defaultValue="1" type="checkbox" />
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall2" onChange={this.handleOverall} defaultValue="2" type="checkbox" />
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall3" onChange={this.handleOverall} defaultValue="3" type="checkbox" />
