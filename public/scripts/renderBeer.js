@@ -4,6 +4,7 @@ var BeerList = React.createClass({
       var id = id;
 
       var tasting_notes = React.findDOMNode(this.refs.tasting_notes).value.trim();
+      var user_id = React.findDOMNode(this.refs.user_id).value.trim();
 
       //Goal: Find highest value that has checked===true
       for(var i = 5; i >= 1; i--){
@@ -21,7 +22,7 @@ var BeerList = React.createClass({
         return;
       }
 
-      var data = ({tasting_notes: tasting_notes, overall: overall});
+      var data = ({tasting_notes: tasting_notes, overall: overall, user_id: user_id});
 
           $.ajax({
               url: this.props.url + 'beers/' +id + '/rating',
@@ -126,8 +127,6 @@ var BeerList = React.createClass({
                 }
             var average = Math.round(sum/beer.ratings.length);
 
-
-
                             
            if (beer.category === this.state.fltr || !this.state.fltr)
                return (
@@ -166,7 +165,7 @@ var BeerList = React.createClass({
                    )
                     else if (beer._id === this.state.fltr || !this.state.fltr)
                return (
-                    <div className="container">  
+          <div className="container">  
           <div className="col-sm-3 col-md-3">
           <div className="beer-display">
           <div className="row">
@@ -188,13 +187,18 @@ var BeerList = React.createClass({
           <input type="checkbox" className="form-control" ref="tasting_notes" defaultValue=""/>
 
 
+<<<<<<< HEAD
+          <h3>Overall Rating</h3>
+=======
           <h3>OverAll Rating</h3>
+>>>>>>> master
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall1" onChange={this.handleOverall} defaultValue="1" type="checkbox" />
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall2" onChange={this.handleOverall} defaultValue="2" type="checkbox" />
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall3" onChange={this.handleOverall} defaultValue="3" type="checkbox" />
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall4" onChange={this.handleOverall} defaultValue="4" type="checkbox" />
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall5" onChange={this.handleOverall} defaultValue="5" type="checkbox" />
-
+          
+          <input type="checkbox" className="form-control" ref="user_id"/>
 
 
           </div>
