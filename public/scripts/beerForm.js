@@ -43,13 +43,12 @@ var BeerForm = React.createClass({
     return (
 
      <div>
-     <div className="col-sm-6 col-md-12">
+     <div className="col-sm-6 col-md-8">
      <h1>Enter New Beers</h1>
      <hr/>
 
      
      <form>
-     <div className="col-sm-6 col-md-6">
      <div className="form-group">
      <label>Beer Name</label>
      <input type="text" className="form-control" ref="name" placeholder="Beer Name"/>
@@ -74,8 +73,6 @@ var BeerForm = React.createClass({
      <label>ABV</label>
      <input className="form-control" ref="abv" placeholder="ABV"/>
      </div>
-     </div>
-     <div className="col-sm-6 col-md-6">
 
      <div className="form-group">
      <label>Location</label>
@@ -90,7 +87,6 @@ var BeerForm = React.createClass({
      <div className="form-group">
      <label>Description</label>
      <textarea  rows="9" className="form-control" ref="description" placeholder="Description"></textarea>
-     </div>
      </div>
      <button onClick={this.handleSubmit} type="submit" className="btn btn-default"> Submit </button>
 
@@ -108,7 +104,10 @@ var OnTapList = React.createClass({
 
   deleteClick: function(id) {
     var id = id;
+<<<<<<< HEAD
+=======
     console.log(id);
+>>>>>>> master
     confirm("Are you sure you want to delete this beer?");
 
     $.ajax({
@@ -236,8 +235,11 @@ var beerData = this.props.data.map(function(beer){
                       <td style={{width:"80%"}}>{beer.name}</td>
                       <td style={{width:"10%"}}><button onClick={that.toggle.bind(that, beer.name)}><i className="fa fa-pencil"></i></button></td>
                       <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-minus-circle" ></i></button></td>
-
                      </tr>
+                     <tr style={{width:"100%"}}>
+                     {updateBeerForm}
+                     </tr>
+
                    </tbody>
                  </table>
        </div>
@@ -246,13 +248,10 @@ var beerData = this.props.data.map(function(beer){
 
 return (
 
-  <div className="container">
+  <div>
   <h1>On Tap Now:</h1>
   <div className="col-md-4 Update">
   {beerData}
-  </div>
-  <div className="col-md-8">
-  {updateBeerForm}
   </div>
   </div>
   );
