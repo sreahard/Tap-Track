@@ -9,7 +9,7 @@
  </header>
 <div class="container">
 
-<% if (user) { %>
+<% if (user.local.email === "finsaasfamily@hotmail.com") { %>
                 		<div id="beerForm"></div>
 		<div class="col-md-12 col-lg-12">
 			<div class="container">              
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 <% } else { %>
-                    <h4>Sorry you are not logged in</h4>
+                    <h4>Sorry you must be an admin</h4>
                 <% } %>
 
 </div>
