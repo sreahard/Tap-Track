@@ -108,7 +108,7 @@ var BeerListLoggedOut = React.createClass({
 
         })
 
-        var beerButtons = beerCats.map(function(category){
+        var beerButtons = beerCats.sort().map(function(category){
             return (
                 <button className="beer-cat" onClick={that.toggle.bind(that, category)}>{category}</button>
                 )
@@ -122,12 +122,26 @@ var BeerListLoggedOut = React.createClass({
             for(var i = 0; i < beer.ratings.length; i++){
                 var overall = beer.ratings[i].overall;
                 sum += beer.ratings[i].overall;
-
-                }
             var average = Math.round(sum/beer.ratings.length);
 
+                }
 
+            var beerAverage = [];
+            this.props.data.map(function(beer){
+            if(average >= 0) {
+                beerAverage.push(average);
+                
+            } else {
+                beerAverage.push('Not Yet Rated')
+            }
+            // return beerCats [beer.category]
 
+        })
+            var allAverages = beerAverage[0].sort();
+
+            
+            
+            console.log(allAverages)
                             
            if (beer.category === this.state.fltr || !this.state.fltr)
                return (
