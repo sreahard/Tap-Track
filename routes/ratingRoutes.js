@@ -13,6 +13,7 @@ router.route('/beers/:beerId/rating')
 
 		var newRating = req.body;
 		console.log('New Rating:', newRating);
+		var user = req.user_id;
 		
 		// Find beer by beerId
 		mongoose.model('Beer').findById({
@@ -27,7 +28,7 @@ router.route('/beers/:beerId/rating')
 		beer.ratings.push({
 			tasting_notes: newRating.tasting_notes,
 			overall: newRating.overall,
-			user_id: newRating.user._id	
+			user_id: newRating.user	
 
 			//TODO: After passport is completed
 		})

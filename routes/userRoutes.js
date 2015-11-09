@@ -4,9 +4,18 @@ module.exports = function(app, passport) {
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/', function(req, res) {
-        res.render('./pages/index'); // load the index.ejs file
+    app.get('/verified', function(req, res) {
+        res.render('./pages/index', {
+            user : req.user
+        }); // load the index.ejs file
     }); 
+    app.get('/', function(req, res) {
+        res.render('./pages/verify', {
+            user : req.user
+        }); // load the index.ejs file
+    }); 
+
+
 
 
     // =====================================
@@ -27,7 +36,7 @@ module.exports = function(app, passport) {
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/', // redirect to the secure profile section
+        successRedirect : '/verified', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -41,7 +50,7 @@ module.exports = function(app, passport) {
     app.use(function (req, res, next) {
       res.locals.login = req.isAuthenticated();
       next();
-  });
+    });
 
     // =====================================
     // SIGNUP ==============================
@@ -66,7 +75,7 @@ module.exports = function(app, passport) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
+        res.render('profile', {
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -94,13 +103,13 @@ module.exports = function(app, passport) {
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect : '/profile',
-            failureRedirect : '/'
+            failureRedirect : '/verified'
         }));
 
     // route for logging out
     app.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.redirect('/verified');
     });
 
     // =====================================
@@ -113,7 +122,7 @@ module.exports = function(app, passport) {
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', {
             successRedirect : '/profile',
-            failureRedirect : '/'
+            failureRedirect : '/verified'
         }));
 
     // locally --------------------------------
@@ -135,7 +144,7 @@ module.exports = function(app, passport) {
         app.get('/connect/facebook/callback',
             passport.authorize('facebook', {
                 successRedirect : '/profile',
-                failureRedirect : '/'
+                failureRedirect : '/verified'
             }));
 
     // twitter --------------------------------
@@ -147,7 +156,7 @@ module.exports = function(app, passport) {
         app.get('/connect/twitter/callback',
             passport.authorize('twitter', {
                 successRedirect : '/profile',
-                failureRedirect : '/'
+                failureRedirect : '/verified'
             }));
 
         // local -----------------------------------
@@ -187,7 +196,7 @@ module.exports = function(app, passport) {
             return next();
 
         // if they aren't redirect them to the home page
-        res.redirect('/');
+        res.redirect('/verified');
     };
 };
 
