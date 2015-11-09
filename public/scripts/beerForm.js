@@ -104,6 +104,10 @@ var OnTapList = React.createClass({
 
   deleteClick: function(id) {
     var id = id;
+<<<<<<< HEAD
+=======
+    console.log(id);
+>>>>>>> master
     confirm("Are you sure you want to delete this beer?");
 
     $.ajax({
