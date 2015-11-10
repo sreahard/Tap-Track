@@ -103,21 +103,24 @@ var BeerList = React.createClass({
                 beerCats.push(beer.category);
                 
             } else {
-                //push a value into beerCats array
+        
             }
-            // return beerCats [beer.category]
+            
 
         })
 
-        var beerButtons = beerCats.map(function(category){
+        var beerButtons = beerCats.sort().map(function(category){
             return (
                 <button className="beer-cat" onClick={that.toggle.bind(that, category)}>{category}</button>
                 )
         });
 
+        var beerSort = this.props.data.sort(function(a, b){
+           var x = a.name.toLowerCase(), y = b.name.toLowerCase();
+           return x < y ? -1 : x > y ? 1 : 0;
+           });
 
-
-        var beerData = this.props.data.map(function(beer){
+        var beerData = beerSort.map(function(beer){
 
             var sum=0;
             for(var i = 0; i < beer.ratings.length; i++){
