@@ -4,7 +4,6 @@ var BeerList = React.createClass({
       var id = id;
 
       var tasting_notes = React.findDOMNode(this.refs.tasting_notes).value.trim();
-      var user_id = React.findDOMNode(this.refs.user_id).value.trim();
       //Goal: Find highest value that has checked===true
       for(var i = 5; i >= 1; i--){
         var refKey = "overall"+i;
@@ -20,10 +19,10 @@ var BeerList = React.createClass({
         return;
       }
 
-      var data = ({tasting_notes: tasting_notes, overall: overall, user_id: user_id});
+      var data = ({tasting_notes: tasting_notes, overall: overall});
 
           $.ajax({
-              url: this.props.url + 'beers/' +id + '/rating',
+              url: this.props.url + 'beers/' + id + '/rating',
               dataType: 'json',
               data: data,
               type:'POST',
@@ -195,7 +194,6 @@ var BeerList = React.createClass({
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall4" onChange={this.handleOverall} defaultValue="4" type="checkbox" />
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall5" onChange={this.handleOverall} defaultValue="5" type="checkbox" />
           
-          <input type="checkbox" className="form-control" ref="user_id" defaultValue={beer.ratings.user_id}/>
 
 
           </div>

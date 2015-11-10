@@ -1,4 +1,4 @@
-// app/routes.js
+
 module.exports = function(app, passport) {
 
     // =====================================
@@ -14,9 +14,6 @@ module.exports = function(app, passport) {
             user : req.user
         }); // load the index.ejs file
     }); 
-
-
-
 
     // =====================================
     // LOGIN ===============================
@@ -40,6 +37,7 @@ module.exports = function(app, passport) {
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+
     app.post('/loginAdmin', passport.authenticate('local-login', {
         successRedirect : '/enter_beer', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error

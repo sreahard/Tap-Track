@@ -9,18 +9,30 @@ var User = require('../model/user');
 router.use(bodyParser.urlencoded({ extended: true }));
 
 
-
-
 router.route('/beers/:beerId/rating')
 	.post(function(req, res) {
 
-		var user = User.find({}).populate('user._id').exec(function(err, user) {
-		     		user_id: user
-				});
+		// var user = new User ({user_id: req.body["user._id"]});
+			// user.user = req.user._id;
 
+		// var user = mongoose.model('User').find({
+
+		// }, function(err, user) {
+		// 	if (err){
+		// 		console.log(err)
+		// 	} else {
+		// 		res.JSON(user)
+		// 	}
+
+		// })
+		// console.log(req)
+		// console.log(user)
+
+		var user = user._id;
+
+			
 		var newRating = req.body;
 		console.log('New Rating:', newRating);
-		// var user = req.user_id;
 		
 		// Find beer by beerId
 		mongoose.model('Beer').findById({
@@ -29,14 +41,13 @@ router.route('/beers/:beerId/rating')
 			if(err) {
 				res.send(err);
 			}
-			
+
 		// Add newRating to the beer's ratings array
 		beer.ratings = beer.ratings || [];
 		beer.ratings.push({
 			tasting_notes: newRating.tasting_notes,
 			overall: newRating.overall,
-            // user_id: newRating.user
-			//TODO: After passport is completed
+            user_id: user
 		})	
 		// Save the updated beer back to the DB
 		
@@ -47,7 +58,7 @@ router.route('/beers/:beerId/rating')
 					res.json({ message: "Beer was updated"});
 			});
 
-		});
+		});	
 	})		
 	
 router.route('/')
