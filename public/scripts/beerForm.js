@@ -29,7 +29,7 @@ var BeerForm = React.createClass({
       type:'POST',
       success: function(response){
         console.log("posting data!",data, response)
-        document.location='/'
+        document.location='/enter_beer'
       }.bind(this),
       error: function(xhr, status, err){
         console.log("not posting data!")
@@ -117,7 +117,7 @@ var OnTapList = React.createClass({
       type:'DELETE',
       success: function(response){
         console.log("Deleting data!", response)
-        document.location='/'
+        document.location='/enter_beer'
       }.bind(this),
       error: function(xhr, status, err){
         console.log("not deleting data!")
@@ -158,7 +158,7 @@ var OnTapList = React.createClass({
       type:'PUT',
       success: function(response){
         console.log("posting data!", data, response)
-        document.location='/'
+        document.location='/enter_beer'
       }.bind(this),
       error: function(xhr, status, err){
         console.log("not posting data!")
@@ -186,12 +186,17 @@ var OnTapList = React.createClass({
   render: function() {
 
     var that = this;
-    
-    var updateBeerForm = this.props.data.map(function(beer){
+
+    var beerSort = this.props.data.sort(function(a, b){
+           var x = a.name.toLowerCase(), y = b.name.toLowerCase();
+           return x < y ? -1 : x > y ? 1 : 0;
+           });
+
+    var updateBeerForm = beerSort.map(function(beer){
       if (beer.name === this.state.fltr)
        return (
-        <form>
-      <h3>{beer.name}</h3>
+     <form>
+     <h3>{beer.name}</h3>
      <div className="form-group">
      <label>Beer Name</label>
      <input type="text" className="form-control" ref="name" defaultValue={beer.name}/>

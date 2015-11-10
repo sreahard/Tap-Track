@@ -30,7 +30,7 @@ var BeerListLoggedOut = React.createClass({
               type:'POST',
                   success: function(response){
                   console.log("posting data!",data, response)
-                  document.location='/'
+                  document.location='/verified'
                   }.bind(this),
                   error: function(xhr, status, err){
                       console.log("not posting data!")
@@ -108,21 +108,25 @@ var BeerListLoggedOut = React.createClass({
 
         })
 
+
         var beerButtons = beerCats.sort().map(function(category){
             return (
                 <button className="beer-cat" onClick={that.toggle.bind(that, category)}>{category}</button>
                 )
         });
 
+        var beerSort = this.props.data.sort(function(a, b){
+           var x = a.name.toLowerCase(), y = b.name.toLowerCase();
+           return x < y ? -1 : x > y ? 1 : 0;
+           });
 
-
-        var beerData = this.props.data.map(function(beer){
+        var beerData = beerSort.map(function(beer){
 
             var sum=0;
             for(var i = 0; i < beer.ratings.length; i++){
                 var overall = beer.ratings[i].overall;
                 sum += beer.ratings[i].overall;
-            var average = Math.round(sum/beer.ratings.length);
+            var average = sum/beer.ratings.length;
 
                 }
 
@@ -137,7 +141,7 @@ var BeerListLoggedOut = React.createClass({
             // return beerCats [beer.category]
 
         })
-            var allAverages = beerAverage[0].sort();
+            var allAverages = beerAverage[0];
 
             
             
@@ -166,9 +170,7 @@ var BeerListLoggedOut = React.createClass({
                    {average > 3 ? <i className="fa fa-star"></i> : ''}
                    {average > 4 ? <i className="fa fa-star"></i> : ''}
                    {average > 5 ? <i className="fa fa-star"></i> : ''}
-                   {average > 6 ? <i className="fa fa-star"></i> : ''}
                    </p> 
-
 
                     <button type="button" className="btn btn-s btn-default" data-toggle="modal" data-target="#loginRateModal"><i className="fa fa-beer"></i>&nbsp;Rate</button>
                     </div>

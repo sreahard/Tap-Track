@@ -3,17 +3,24 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Beer = require('../model/beerModel');
+var User = require('../model/user');
 
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
 
+
+
 router.route('/beers/:beerId/rating')
 	.post(function(req, res) {
 
+		var user = User.find({}).populate('user._id').exec(function(err, user) {
+		     		user_id: user
+				});
+
 		var newRating = req.body;
 		console.log('New Rating:', newRating);
-		var user = req.user_id;
+		// var user = req.user_id;
 		
 		// Find beer by beerId
 		mongoose.model('Beer').findById({
@@ -28,11 +35,9 @@ router.route('/beers/:beerId/rating')
 		beer.ratings.push({
 			tasting_notes: newRating.tasting_notes,
 			overall: newRating.overall,
-			user_id: newRating.user	
-
+            // user_id: newRating.user
 			//TODO: After passport is completed
-		})
-		
+		})	
 		// Save the updated beer back to the DB
 		
 		beer.save(function(err, beer) {

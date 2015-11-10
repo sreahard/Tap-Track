@@ -5,7 +5,6 @@ var BeerList = React.createClass({
 
       var tasting_notes = React.findDOMNode(this.refs.tasting_notes).value.trim();
       var user_id = React.findDOMNode(this.refs.user_id).value.trim();
-
       //Goal: Find highest value that has checked===true
       for(var i = 5; i >= 1; i--){
         var refKey = "overall"+i;
@@ -16,7 +15,6 @@ var BeerList = React.createClass({
         }
       }
 
-     console.log(id);
 
       if(!overall){
         return;
@@ -31,7 +29,7 @@ var BeerList = React.createClass({
               type:'POST',
                   success: function(response){
                   console.log("posting data!",data, response)
-                  document.location='/'
+                  document.location='/verified'
                   }.bind(this),
                   error: function(xhr, status, err){
                       console.log("not posting data!")
@@ -109,15 +107,18 @@ var BeerList = React.createClass({
 
         })
 
-        var beerButtons = beerCats.map(function(category){
+        var beerButtons = beerCats.sort().map(function(category){
             return (
                 <button className="beer-cat" onClick={that.toggle.bind(that, category)}>{category}</button>
                 )
         });
 
+        var beerSort = this.props.data.sort(function(a, b){
+           var x = a.name.toLowerCase(), y = b.name.toLowerCase();
+           return x < y ? -1 : x > y ? 1 : 0;
+           });
 
-
-        var beerData = this.props.data.map(function(beer){
+        var beerData = beerSort.map(function(beer){
 
             var sum=0;
             for(var i = 0; i < beer.ratings.length; i++){
@@ -155,7 +156,7 @@ var BeerList = React.createClass({
                    </p> 
 
 
-                    <button type="button" className="btn btn-s btn-default" onClick={that.toggleRating.bind(that, beer._id)}><i className="fa fa-beer"></i>Rate</button> &nbsp;
+                    <button type="button" className="btn btn-s btn-default" onClick={that.toggleRating.bind(that, beer._id)}><i className="fa fa-beer"></i>&nbsp;Rate</button> 
                     </div>
                     </div>
                    </div>
@@ -194,7 +195,7 @@ var BeerList = React.createClass({
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall4" onChange={this.handleOverall} defaultValue="4" type="checkbox" />
           <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall5" onChange={this.handleOverall} defaultValue="5" type="checkbox" />
           
-          <input type="checkbox" className="form-control" ref="user_id"/>
+          <input type="checkbox" className="form-control" ref="user_id" defaultValue={beer.ratings.user_id}/>
 
 
           </div>
