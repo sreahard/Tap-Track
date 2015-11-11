@@ -27,7 +27,6 @@ router.route('/beers/:beerId/rating')
 			if(err) {
 				res.send(err);
 			}
-		console.log(hackUser.id);
 
 		mongoose.model('User').findById({
 			_id: hackUser.id

@@ -260,6 +260,4 @@ function(req, token, refreshToken, profile, done) {
         });
 
     }));
-};
-
-
+}; 
