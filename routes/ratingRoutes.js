@@ -13,7 +13,7 @@ router.route('/beers/:beerId/rating')
 	.post(function(req, res) {
 
 		
-		var user = new User({user_id: req.body["user.ratings.user_id"]})
+		// var user = new User({user_id: req.body["user.ratings.user_id"]})
 
 			
 		var newRating = req.body;
