@@ -106,10 +106,12 @@ var BeerForm = React.createClass({
 
 var OnTapList = React.createClass({
 
-  deleteClick: function(id) {
+  deleteClick: function(id, beer) {
     var id = id;
-    console.log(id);
-    alert("Are you sure you want to delete this beer?");
+    
+     var areYouSure = confirm("Are you sure that you want to delete this beer?");
+    
+    if(areYouSure == true)
 
     $.ajax({
       url: this.props.url + id,

@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Beer = require('../model/beerModel');
 var User = require('../model/user');
-
+var hackUser = require('../config/hackUser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
@@ -12,23 +12,8 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.route('/beers/:beerId/rating')
 	.post(function(req, res) {
 
-		// var user = new User ({user_id: req.body["user._id"]});
-			// user.user = req.user._id;
-
-		// var user = mongoose.model('User').find({
-
-		// }, function(err, user) {
-		// 	if (err){
-		// 		console.log(err)
-		// 	} else {
-		// 		res.JSON(user)
-		// 	}
-
-		// })
-		// console.log(req)
-		// console.log(user)
-
-		var user = user._id;
+		
+		var user = new User({user_id: req.body["user.ratings.user_id"]})
 
 			
 		var newRating = req.body;
@@ -39,6 +24,12 @@ router.route('/beers/:beerId/rating')
 			_id: req.params.beerId
 		}, function(err, beer) {
 			if(err) {
+				res.send(err);
+			}
+		mongoose.model('User').findById({
+			_id: hackUser.id
+		}, function(err, user){
+			if(err){
 				res.send(err);
 			}
 
@@ -57,7 +48,7 @@ router.route('/beers/:beerId/rating')
 					
 					res.json({ message: "Beer was updated"});
 			});
-
+			});
 		});	
 	})		
 	
