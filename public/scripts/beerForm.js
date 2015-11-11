@@ -106,26 +106,27 @@ var BeerForm = React.createClass({
 
 var OnTapList = React.createClass({
 
-  deleteClick: function(id) {
+  deleteClick: function(id, beer) {
     var id = id;
-    console.log(id);
-    alert("Are you sure you want to delete this beer?");
 
-    $.ajax({
-      url: this.props.url + id,
-      dataType: 'json',
-      type:'DELETE',
-      success: function(response){
-        console.log("Deleting data!", response)
-        document.location='/enter_beer'
-      }.bind(this),
-      error: function(xhr, status, err){
-        console.log("not deleting data!")
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    })
+    var areYouSure = confirm("Are you sure that you want to delete this beer?");
 
-  },
+    if(areYouSure == true)
+      $.ajax({
+        url: this.props.url + id,
+        dataType: 'json',
+        type:'DELETE',
+        success: function(response){
+          console.log("Deleting data!", response)
+          document.location='/enter_beer'
+        }.bind(this),
+        error: function(xhr, status, err){
+          console.log("not deleting data!")
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      }) 
+    },
+
   handleUpdate: function(id){
 
    
@@ -240,7 +241,7 @@ var beerData = this.props.data.map(function(beer){
                      <tr>
                       <td style={{width:"80%"}}>{beer.name}</td>
                       <td style={{width:"10%"}}><button onClick={that.toggle.bind(that, beer.name)}><i className="fa fa-pencil"></i></button></td>
-                      <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-minus-circle" ></i></button></td>
+                      <td style={{width:"10%"}}><button onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-minus-circle" ></i></button></td>
 
                      </tr>
                    </tbody>

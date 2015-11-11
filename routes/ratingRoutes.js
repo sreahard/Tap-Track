@@ -14,13 +14,9 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.route('/beers/:beerId/rating')
 	.post(function(req, res) {
 
-		var user = User.find({}).populate('user._id').exec(function(err, user) {
-		     		user_id: user
-				});
+		var user = new Beer({user_id: req.body["user.ratings.user_id"]})
 
 		var newRating = req.body;
-		console.log('New Rating:', newRating);
-		// var user = req.user_id;
 		
 		// Find beer by beerId
 		mongoose.model('Beer').findById({
@@ -35,7 +31,8 @@ router.route('/beers/:beerId/rating')
 		beer.ratings.push({
 			tasting_notes: newRating.tasting_notes,
 			overall: newRating.overall,
-            // user_id: newRating.user
+            user_id: user
+
 			//TODO: After passport is completed
 		})	
 		// Save the updated beer back to the DB
@@ -44,7 +41,7 @@ router.route('/beers/:beerId/rating')
 				if(err)
 					res.send(err);
 					
-					res.json({ message: "Beer was updated"});
+				res.json({ message: "Beer was updated"});
 			});
 
 		});

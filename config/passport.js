@@ -252,10 +252,12 @@ function(req, token, refreshToken, profile, done) {
                 user.save(function(err) {
                     if (err)
                         throw err;
-                    return done(null, user);
+                   return done(null, user);
                 });
             }
         });
 
     }));
 };
+
+
