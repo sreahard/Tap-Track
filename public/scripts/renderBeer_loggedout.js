@@ -236,4 +236,4 @@ render: function() {
 }
 })
 
-React.render(<App url="/api/rating/"/>, document.getElementById("beerPostsLoggedOut"))
+React.render(<App url="/api/beer/"/>, document.getElementById("beerPostsLoggedOut"))

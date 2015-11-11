@@ -165,46 +165,45 @@ var BeerList = React.createClass({
                    )
                     else if (beer._id === this.state.fltr || !this.state.fltr)
                return (
-          <div className="container">  
-          <div className="col-sm-3 col-md-3">
-          <div className="beer-display">
-          <div className="row">
-          <div className="well-beer">
-          <img src={beer.image} className="img-responsive"/>
-          </div>
-          </div>
-          </div>
-          </div>
-          <div className="col-sm-5 col-md-5">
-          <div className="row">
-          <h1>{beer.name}</h1>
-          <hr/>
-          <form>
+                    <div className="col-sm-6 col-md-4">
+                    <div className="beer-display">
+                    <div className="row">
+                   <div className="well-beer">
+                   <img src={beer.image} className="img-responsive"/>
+                   <div className="caption">
+                   <h3>{beer.name}</h3><br/>
+                   <h4>
+                   {beer.abv > 0 ? ' ABV ' + beer.abv + '% / ': ''} {beer.ibu}{beer.ibu > 0 ? ' IBU / ' : ''}{beer.location}
+                   </h4>
+                   <hr className="short-rule"/>                        
+                   <p className="brewery">
+                   {beer.brewery}
+                   </p>
+                   <form>
 
-          <div className="form-group">
+                    <div className="form-group">
           
 
-          <input type="checkbox" className="form-control" ref="tasting_notes" defaultValue=""/>
+                    <input type="checkbox" className="form-control" ref="tasting_notes" defaultValue=""/>
 
-          <h3>Overall Rating</h3>
-
-          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall1" onChange={this.handleOverall} defaultValue="1" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall2" onChange={this.handleOverall} defaultValue="2" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall3" onChange={this.handleOverall} defaultValue="3" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall4" onChange={this.handleOverall} defaultValue="4" type="checkbox" />
-          <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall5" onChange={this.handleOverall} defaultValue="5" type="checkbox" />
-          
+                    <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall1" onChange={this.handleOverall} defaultValue="1" type="checkbox" />
+                    <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall2" onChange={this.handleOverall} defaultValue="2" type="checkbox" />
+                    <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall3" onChange={this.handleOverall} defaultValue="3" type="checkbox" />
+                    <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall4" onChange={this.handleOverall} defaultValue="4" type="checkbox" />
+                    <input id="checkbox1" className="glyphicon glyphicon-star" ref="overall5" onChange={this.handleOverall} defaultValue="5" type="checkbox" />
+                    
 
 
-          </div>
-          <button onClick={that.handleSubmit.bind(this, beer._id)} type="submit" className="btn btn-primary">Submit</button>
-          </form>
-          </div>
-          </div>
-          </div>
-
-                   )
-            }.bind(this));
+                    </div>
+                    <button onClick={that.handleSubmit.bind(this, beer._id)} type="submit" className="btn btn-s btn-default"><i className="fa fa-beer"></i> Rate</button>
+                    </form>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                             )
+                      }.bind(this));
             
 
            

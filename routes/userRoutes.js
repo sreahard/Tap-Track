@@ -1,3 +1,4 @@
+var Beer = require('../model/beerModel');
 
 module.exports = function(app, passport) {
 
@@ -9,12 +10,17 @@ module.exports = function(app, passport) {
             user : req.user
         }); // load the index.ejs file
     }); 
+
+    app.get('/tap_rooms', function(req, res) {
+        res.render('./pages/tap_rooms', {
+            user : req.user
+        }); // load the index.ejs file
+    }); 
     app.get('/', function(req, res) {
         res.render('./pages/verify', {
             user : req.user
         }); // load the index.ejs file
     }); 
-
     // =====================================
     // LOGIN ===============================
     // =====================================
@@ -74,7 +80,7 @@ module.exports = function(app, passport) {
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile', {
-            user : req.user // get the user out of session and pass to template
+            user : req.user
         });
     });
 
@@ -199,21 +205,4 @@ module.exports = function(app, passport) {
 };
 
 
-
-
-
-// APP GET PERMISSIONS FOR LOGGED IN USERS TO ENTER BEER
-
-// app.get('/pages/enter_beer', requireAuth, adminHandler);
-
-// function requireAuth(req, res, next){
-
-//   // check if the user is logged in
-//   if(!req.isAuthenticated()){
-//     req.session.messages = "Only admin can view this page";
-//     res.redirect('/');
-//   }
-//   next();
-// };
-// };
 
