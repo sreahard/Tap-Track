@@ -2,8 +2,6 @@
 var RateForm = React.createClass({
 
   handleSubmit: function(id){
-  
-      var id = id;
 
       var tasting_notes = React.findDOMNode(this.refs.tasting_notes).value.trim();
 
@@ -17,16 +15,14 @@ var RateForm = React.createClass({
         }
       }
 
-     console.log(id);
-
       if(!overall){
         return;
       }
-
+      console.log('we are in this function');
       var data = ({tasting_notes: tasting_notes, overall: overall});
 
           $.ajax({
-              url: this.props.url + 'beers/' +id + '/rating',
+              url: this.props.url + 'beers/' + id + '/rating',
               dataType: 'json',
               data: data,
               type:'POST',

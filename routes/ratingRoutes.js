@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Beer = require('../model/beerModel');
 var User = require('../model/user');
+var hackUser = require('../config/hackUser');
 
 
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -14,17 +15,27 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.route('/beers/:beerId/rating')
 	.post(function(req, res) {
 
-		var user = new Beer({user_id: req.body["user.ratings.user_id"]})
+		var user = new User({user_id: req.body["user.ratings.user_id"]})
 
 		var newRating = req.body;
 		
 		// Find beer by beerId
 		mongoose.model('Beer').findById({
+			
 			_id: req.params.beerId
 		}, function(err, beer) {
 			if(err) {
 				res.send(err);
 			}
+		console.log(hackUser.id);
+
+		mongoose.model('User').findById({
+			_id: hackUser.id
+		}, function(err, user){
+			if(err){
+				res.send(err);
+			}
+		
 			
 		// Add newRating to the beer's ratings array
 		beer.ratings = beer.ratings || [];
@@ -43,7 +54,7 @@ router.route('/beers/:beerId/rating')
 					
 				res.json({ message: "Beer was updated"});
 			});
-
+			});
 		});
 	})		
 	

@@ -1,8 +1,6 @@
 var BeerList = React.createClass({
   handleSubmit: function(id){
   
-      var id = id;
-
       var tasting_notes = React.findDOMNode(this.refs.tasting_notes).value.trim();
       var user_id = React.findDOMNode(this.refs.user_id).value.trim();
       //Goal: Find highest value that has checked===true
