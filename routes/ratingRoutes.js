@@ -63,16 +63,19 @@ app.get('/api/rating', function(req, res){
 
 
 app.get('/api/rating/getUserRatings/:id', function(req, res) {
-    var id = req.params.id;
+        
+        var id = req.params.id
+
         mongoose.model('Beer').find({
-            "ratings.user_id": id
+            "ratings.user_id": id 
+
         }, function(err, rating) {
             if(err)
-                res.send(err);
+            res.send(err);
             res.send(rating)
-             	// res.render('./pages/profile.ejs', {
-              //  user : req.user,
-              //  rating : rating
+             // res.render('./pages/profile.ejs', {
+             // user : req.user,
+             // rating : rating
            // });
        });   
    })
