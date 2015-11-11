@@ -4,16 +4,16 @@ module.exports = function(app, passport) {
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/verified', function(req, res) {
+    app.get('/', function(req, res) {
         res.render('./pages/index', {
             user : req.user
         }); // load the index.ejs file
     }); 
-    app.get('/', function(req, res) {
-        res.render('./pages/verify', {
-            user : req.user
-        }); // load the index.ejs file
-    }); 
+    // app.get('/', function(req, res) {
+    //     res.render('./pages/verify', {
+    //         user : req.user
+    //     }); // load the index.ejs file
+    // }); 
 
     // =====================================
     // LOGIN ===============================
