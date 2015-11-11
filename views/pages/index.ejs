@@ -25,6 +25,8 @@
 <div class="container">
 <div class="container spacer">
     <main>
+
+    <% if (!user) { %>
         <div class="row" id="beers">
             <div id="beerPostsLoggedOut"></div>
         </div>
@@ -32,7 +34,6 @@
 
     <% } else { %>
         <div class="row" id="beers">
-            <h1><%= user %> </h1>
             <div id="beerPosts"></div>
 
  
