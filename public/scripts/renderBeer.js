@@ -28,7 +28,7 @@ var BeerList = React.createClass({
               type:'POST',
                   success: function(response){
                   console.log("posting data!",data, response)
-                  document.location='/verified'
+                  document.location='/dram_shop'
                   }.bind(this),
                   error: function(xhr, status, err){
                       console.log("not posting data!")

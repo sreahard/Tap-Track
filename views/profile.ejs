@@ -55,20 +55,31 @@
                             <div class="col-sm-6 col-md-3">
                     <div class="location-display">
                     <div class="row">
-                   <div class="well-beer">
+                   <div class="well-beer-sm">
                    <img src="<%= userBeer[i].image %>" class="img-responsive"/>
                    <div class="caption">
-                   <h4><%= beerName %></h4><br/>
-                   <h4><%= userBeer[i].category %></h4><br/>
+                   <h4 class="profile"><%= beerName %></h4><br/>
+                   <p class="brewery"><%= userBeer[i].category %></p>
 
-                   <h4>
+                   <p class="brewery">
                    <%= userBeer[i].abv > 0 ? ' ABV ' + userBeer[i].abv + '% / ': ''%> <%= userBeer[i].ibu%><%= userBeer[i].ibu > 0 ? ' IBU / ' : ''%><%= userBeer[i].location%>
-                   </h4>
+                   </p>
                    <hr class="short-rule"/>                        
                    <p class="brewery">
                    <%=userBeer[i].brewery%>
                    <p class="rating">
-                   <%=average%>
+                   <% if (average === 1){ %>
+                   <i class="fa fa-star"></i>
+                   <% } if (average === 2){ %>
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <% } if (average === 3){ %>
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <% } if (average === 4){ %>
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <% } if (average === 5){ %>
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <% } %>
+                    
 
                    </p>
                    </p>
