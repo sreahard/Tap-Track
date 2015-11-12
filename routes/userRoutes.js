@@ -125,7 +125,7 @@ module.exports = function(app, passport) {
     // route for logging out
     app.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/dram_shop');
+        res.redirect('/');
     });
 
     // =====================================
