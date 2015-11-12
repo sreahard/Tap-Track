@@ -1,8 +1,8 @@
 module.exports = {
 
     'facebookAuth' : {
-        'clientID'      : '832193756902225', // your App ID
-        'clientSecret'  : '4eafaf2af51aa7147575ac6e41493779', // your App Secret
+        'clientID'      : '565890740227653', // your App ID
+        'clientSecret'  : 'bfdbfc1d7f14c59f4d0de671ff316ee0', // your App Secret
         'callbackURL'   : 'http://tap-track.herokuapp.com/auth/facebook/callback'
     },
 
