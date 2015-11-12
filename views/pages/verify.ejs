@@ -23,11 +23,17 @@
         </ul></div></div></nav>
 
     </header>
-    <div class="jumbotronHomePage">
+            <div class="jumbotronHomePage">
         <div align="center">
-            <a href="/verified"><button class="ghost-button-semi-transparent"> I verify I am 21 </button></a>
-            <a href="http://www.rootbeer.com/"><button class="ghost-button-semi-transparent"> I am not 21 </button></a>
-            <h3 class="jumbo"> You must be 21 to veiw this site <br> by clicking above you are stating this to be true.</h3>
+<% if (!user) { %>
+        <a href="/tap_rooms"><button class="ghost-button-semi-transparent"> Find My Tap Room </button></a>
+        <button class="ghost-button-semi-transparent" data-toggle="modal" data-target="#loginModal"> Log In </button>
+        <% } else { %> 
+
+        <a href="/tap_rooms"><button class="ghost-button-semi-transparent"> Find My Tap Room </button></a>
+
+
+            <% } %>
 
         </div>
     </div>

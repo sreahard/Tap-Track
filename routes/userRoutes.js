@@ -1,12 +1,18 @@
 var Beer = require('../model/beerModel');
+var mongoose = require('mongoose');
 
 module.exports = function(app, passport) {
 
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/verified', function(req, res) {
-        res.render('./pages/index', {
+    app.get('/', function(req, res) {
+        res.render('./pages/verify', {
+            user : req.user
+        }); // load the index.ejs file
+    }); 
+        app.get('/test', function(req, res) {
+        res.render('test', {
             user : req.user
         }); // load the index.ejs file
     }); 
@@ -15,9 +21,10 @@ module.exports = function(app, passport) {
         res.render('./pages/tap_rooms', {
             user : req.user
         }); // load the index.ejs file
-    }); 
-    app.get('/', function(req, res) {
-        res.render('./pages/verify', {
+    });
+     
+    app.get('/dram_shop', function(req, res) {
+        res.render('./pages/index', {
             user : req.user
         }); // load the index.ejs file
     }); 
@@ -39,7 +46,7 @@ module.exports = function(app, passport) {
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/verified', // redirect to the secure profile section
+        successRedirect : '/dram_shop', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -68,7 +75,7 @@ module.exports = function(app, passport) {
 
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/', // redirect to the secure profile section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -78,9 +85,14 @@ module.exports = function(app, passport) {
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile', {
-            user : req.user
+    app.get('/profile', isLoggedIn, function(req, res) { 
+         mongoose.model('Beer').find({
+            "ratings.user_id": req.user._id 
+        }, function(err, beer){
+        res.render('profile.ejs', {
+            user : req.user, 
+            userBeer: beer
+        })
         });
     });
 
@@ -107,13 +119,13 @@ module.exports = function(app, passport) {
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect : '/profile',
-            failureRedirect : '/verified'
+            failureRedirect : '/dram_shop'
         }));
 
     // route for logging out
     app.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/verified');
+        res.redirect('/dram_shop');
     });
 
     // =====================================
@@ -126,7 +138,7 @@ module.exports = function(app, passport) {
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', {
             successRedirect : '/profile',
-            failureRedirect : '/verified'
+            failureRedirect : '/dram_shop'
         }));
 
     // locally --------------------------------
@@ -148,7 +160,7 @@ module.exports = function(app, passport) {
         app.get('/connect/facebook/callback',
             passport.authorize('facebook', {
                 successRedirect : '/profile',
-                failureRedirect : '/verified'
+                failureRedirect : '/dram_shop'
             }));
 
     // twitter --------------------------------
@@ -160,7 +172,7 @@ module.exports = function(app, passport) {
         app.get('/connect/twitter/callback',
             passport.authorize('twitter', {
                 successRedirect : '/profile',
-                failureRedirect : '/verified'
+                failureRedirect : '/dram_shop'
             }));
 
         // local -----------------------------------
@@ -200,7 +212,7 @@ module.exports = function(app, passport) {
             return next();
 
         // if they aren't redirect them to the home page
-        res.redirect('/verified');
+        res.redirect('/dram_shop');
     };
 };
 

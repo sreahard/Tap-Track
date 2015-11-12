@@ -122,7 +122,7 @@ var BeerList = React.createClass({
             var sum=0;
             for(var i = 0; i < beer.ratings.length; i++){
                 var overall = beer.ratings[i].overall;
-                sum += beer.ratings[i].overall;
+                sum += overall;
 
                 }
             var average = Math.round(sum/beer.ratings.length);
@@ -145,7 +145,7 @@ var BeerList = React.createClass({
                    {beer.brewery}
                    </p>
                    <p className="rating">
-                   {average > 0 ? <i className="fa fa-star"></i> : <h3 className="rating">Not Yet Rated</h3>}
+                   {average > 0 ? <i className="fa fa-star"></i> : ''}
                    {average > 1 ? <i className="fa fa-star"></i> : ''}
                    {average > 2 ? <i className="fa fa-star"></i> : ''}
                    {average > 3 ? <i className="fa fa-star"></i> : ''}
@@ -164,7 +164,7 @@ var BeerList = React.createClass({
 
                    )
                     else if (beer._id === this.state.fltr || !this.state.fltr)
-               return (
+                    return (
                     <div className="col-sm-6 col-md-4">
                     <div className="beer-display">
                     <div className="row">

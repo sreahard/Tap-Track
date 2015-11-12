@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/verified"><img src="/images/logo_wht.png" class="img-responsive"></a>
+            <a class="navbar-brand" href="/"><img src="/images/logo_wht.png" class="img-responsive"></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -20,11 +20,14 @@
                 <%} else if (user.local.email === "suziequz@msn.com") { %>
 
                     <li> <a href="/logout"> <button type="button" class="btn-menu"> Log Out </button></a></li>
+                    <li> <a href="/profile"> <button type="button" class="btn-menu"> My Profile </button></a></li>
+
                     <li> <a href="/enter_beer"> <button type="button" class="btn-menu"> Manage Beers </button></a></li>
 
                 <% } else { %>
 
                     <li> <a href="/logout"> <button type="button" class="btn-menu"> Log Out </button></a></li>
+                    <li> <a href="/profile"> <button type="button" class="btn-menu"> My Profile </button></a></li>
 
                 <% } %>
                 </ul>

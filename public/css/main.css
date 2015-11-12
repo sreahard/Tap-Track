@@ -222,6 +222,8 @@ img.location {
   padding:15px;
   text-align: center;
   margin: 5px;
+  max-height: 660px;
+
 }
 .short-rule{
 	width: 25%;

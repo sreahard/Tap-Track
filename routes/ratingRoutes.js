@@ -62,23 +62,23 @@ app.get('/api/rating', function(req, res){
 	})
 
 
-app.get('/api/rating/getUserRatings/:id', function(req, res) {
-        
-        var id = req.params.id
+// app.get('/api/rating/getUserRatings/:id', function(req, res) {
+// 		// console.log(req.user._id)
+//         var id = req.user._id
+// 		// console.log(req)
+//         mongoose.model('Beer').find({
+//             "ratings.user_id": id 
 
-        mongoose.model('Beer').find({
-            "ratings.user_id": id 
-
-        }, function(err, rating) {
-            if(err)
-            res.send(err);
-            res.send(rating)
-             // res.render('./pages/profile.ejs', {
-             // user : req.user,
-             // rating : rating
-           // });
-       });   
-   })
+//         }, function(err, rating) {
+//             if(err)
+//             res.send(err);
+//             // res.send(rating)
+//              res.render('/profile.ejs', {
+//              user : req.user,
+//              id : id
+//            });
+//        });   
+//    })
 
  app.get('/api/rating/:id', function(req, res) {
 		mongoose.model('Beer').findById({

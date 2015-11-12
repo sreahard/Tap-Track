@@ -164,7 +164,7 @@ var BeerListLoggedOut = React.createClass({
                    {beer.brewery}
                    </p>
                    <p className="rating">
-                   {average > 0 ? <i className="fa fa-star"></i> : <h3 className="rating">Not Yet Rated</h3>}
+                   {average > 0 ? <i className="fa fa-star"></i> : ''}
                    {average > 1 ? <i className="fa fa-star"></i> : ''}
                    {average > 2 ? <i className="fa fa-star"></i> : ''}
                    {average > 3 ? <i className="fa fa-star"></i> : ''}

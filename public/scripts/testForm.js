@@ -1,47 +1,43 @@
-var TestForm = React.createClass({
+var App = React.createClass({
+   
+    getInitialState: function(){
+         var id = window.location.pathname;
+                    console.log(window.location.pathname) 
+                    return {data: []};
+        console.log(this.getParams())
+    },
 
-   handleSubmit: function(e){
+    loadRating: function(beer) {
+    // var beerPost = this.state.data;
+    $.ajax({
+        url: this.props.url + id,
+        dataType: 'json',
+        cache: false,
+        success: function(data){
+            console.log("inside success")
 
-       e.preventDefault();
+            this.setState({data:data});
+        }.bind(this),
+        error: function(xhr, status, err){
+            console.log("Broken url is " + this.props.url)
+            console.error(this.props.url, status, err.toString());
+        }.bind(this)
+    });
+},
 
-       var name = React.findDOMNode(this.refs.name).value.trim();
+componentDidMount: function(){
+    this.loadRating();
+},
 
-       if(!name){
-         return;
-       }
 
-       var data = ({name: name});
+render: function() {
+    return (
+        <div>
+       <h1>Beer Ratings Here</h1>
+        </div>
+        )
+}
+})
 
-           $.ajax({
-               url: this.props.url,
-               dataType: 'json',
-               data: data,
-               type:'POST',
-                   success: function(response){
-                   console.log("posting data!",data, response)
-                   document.location='/test2'
-                   }.bind(this),
-                   error: function(xhr, status, err){
-                       console.log("not posting data!")
-                       console.error(this.props.url, status, err.toString());
-                   }.bind(this)
-           })
-   }
-   ,
-   render: function() {
-       return (
-                <div>
-               <form>
-                   <div className="form-group">
-                       <label>Name</label>
-                       <input type="text" className="form-control" ref="name" placeholder="name"/>
-                   </div>
-                   <button onClick={this.handleSubmit} type="submit" className="btn btn-default"> Submit </button>
-               </form>
-                </div>
-           );
-   }
-});
-
-React.render(<TestForm url="/api/test/"/>, document.getElementById('testForm'));
+React.render(<App url="/api/rating/getUserRatings/"/>, document.getElementById('testForm'));
 
