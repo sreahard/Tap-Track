@@ -11,6 +11,11 @@ module.exports = function(app, passport) {
             user : req.user
         }); // load the index.ejs file
     }); 
+    app.get('/kettlehouse', function(req, res) {
+        res.render('./pages/kettlehouse', {
+            user : req.user
+        }); // load the index.ejs file
+    }); 
         app.get('/test', function(req, res) {
         res.render('test', {
             user : req.user

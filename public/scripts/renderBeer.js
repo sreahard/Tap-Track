@@ -128,7 +128,7 @@ var BeerList = React.createClass({
             var average = Math.round(sum/beer.ratings.length);
 
                             
-           if (beer.category === this.state.fltr || !this.state.fltr)
+           if (beer.category === this.state.fltr && beer.visible === true || !this.state.fltr)
                return (
                     <div className="col-sm-6 col-md-4">
                     <div className="beer-display">

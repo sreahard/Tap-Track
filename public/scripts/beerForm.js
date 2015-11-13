@@ -69,13 +69,13 @@ var BeerForm = React.createClass({
      <label>IBU</label>
      <input className="form-control" ref="ibu" placeholder="IBU"/>
      </div>
-
+     </div>
+     <div className="col-sm-6 col-md-6">     
      <div className="form-group">
      <label>ABV</label>
      <input className="form-control" ref="abv" placeholder="ABV"/>
      </div>
-     </div>
-     <div className="col-sm-6 col-md-6">
+
 
      <div className="form-group">
      <label>Location</label>
@@ -87,13 +87,10 @@ var BeerForm = React.createClass({
      <input className="form-control" ref="brewery" placeholder="Brewery"/>
      </div>
 
-     <div className="form-group">
-     <label>Description</label>
-     <textarea  rows="9" className="form-control" ref="description" placeholder="Description"></textarea>
-     </div>
-     </div>
-     <button onClick={this.handleSubmit} type="submit" className="btn btn-default"> Submit </button>
 
+    <div className="form-group">
+     <br/><button onClick={this.handleSubmit} type="submit" className="btn btn-default"> Submit </button>
+     </div>     </div>
      </form>
      <hr/>
      </div>
