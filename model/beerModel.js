@@ -9,6 +9,7 @@ var BeerSchema = new mongoose.Schema({
 	location: String,
 	brewery: String,
 	description: String,
+	visible: Boolean,
 	averageRating: Number,
 	ratings: [{
 		tasting_notes: ["malty", "breadlike", "rich", "deep", "roasty", "cereal", "coffeeish", "caramelly", "toffee-like", "molasses-like", "smoky", "sweet", "autumnal","burnt cream", "oatmeal", "rustic", "layered", "piney", "citrusy", "grapefruity", "earthy", "musty", "spicy", "sharp", "bright", "fresh", "herbal", "lemony", "newly-mown lawn", "floral", "springlike", "brilliant", "minty", "pungent", "grassy"],
