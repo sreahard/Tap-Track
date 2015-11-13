@@ -108,11 +108,6 @@ module.exports = function(app, passport) {
         });
     });
     
-    // app.get('/verifed', isLoggedIn, function(req, res) {
-    //     res.render('./pages/index', {
-    //         user : req.user // get the user out of session and pass to template
-    //     });
-    // });    
 
     // =====================================
     // FACEBOOK ROUTES =====================

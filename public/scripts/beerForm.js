@@ -11,7 +11,6 @@ var BeerForm = React.createClass({
     var abv = React.findDOMNode(this.refs.abv).value.trim();
     var location = React.findDOMNode(this.refs.location).value.trim();
     var brewery = React.findDOMNode(this.refs.brewery).value.trim();
-    var description = React.findDOMNode(this.refs.description).value.trim();
 
 
 
@@ -20,7 +19,7 @@ var BeerForm = React.createClass({
       return;
     }
 
-    var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery, description: description});
+    var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery});
 
     $.ajax({
       url: this.props.url,
@@ -42,7 +41,7 @@ var BeerForm = React.createClass({
   render: function() {
     return (
 
-     <div>
+          <div>
      <div className="col-sm-6 col-md-12">
      <h1>Enter New Beers</h1>
      <hr/>
@@ -139,7 +138,6 @@ var OnTapList = React.createClass({
     var abv = React.findDOMNode(this.refs.abv).value.trim();
     var location = React.findDOMNode(this.refs.location).value.trim();
     var brewery = React.findDOMNode(this.refs.brewery).value.trim();
-    var description = React.findDOMNode(this.refs.description).value.trim();
 
 
 
@@ -148,7 +146,7 @@ var OnTapList = React.createClass({
       return;
     }
 
-    var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery, visible: visible});
+    var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery});
 
     $.ajax({
       url: this.props.url + id,
@@ -182,29 +180,6 @@ var OnTapList = React.createClass({
       fltr: null
     })
   },
-  // showBeer: function (visible) {
-  //   this.setState({
-  //     fltr: true
-  //   })
-  // },
-  // hideBeer: function (visible) {
-  //   this.setState({
-  //     fltr: false
-  //   })
-  // },
-  // toggleVisible: function (id, visible){
-  //   var id = id;
-  //   if(visible === true){
-  //     this.setState({
-  //       beer.showBeer
-  //     })
-  //   }
-  //   if(visible === false){
-  //     this.setState({
-  //       beer.hideBeer
-  //     })
-  //   }
-  // },
   render: function() {
 
     var that = this;
@@ -245,9 +220,6 @@ var OnTapList = React.createClass({
      </div><div className="form-group">
      <label>Brewery</label>
      <input className="form-control" ref="brewery" defaultValue={beer.brewery}/>
-     </div><div className="form-group">
-     <label>Description</label>
-     <textarea  rows="15" className="form-control" ref="description" defaultValue={beer.description}></textarea>
      </div>
      <button onClick={that.handleUpdate.bind(this, beer._id)} type="submit" className="btn btn-default"> Submit {beer.name} </button>
      </form>
@@ -263,7 +235,6 @@ var beerData = this.props.data.map(function(beer){
                       <td style={{width:"80%"}}>{beer.name}</td>
                       <td style={{width:"10%"}}><button onClick={that.toggle.bind(that, beer.name)}><i className="fa fa-pencil"></i></button></td>
                       <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-minus-circle" ></i></button></td>
-                      <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer.visible)}><i className="fa fa-eye" ></i></button></td>
 
                      </tr>
                    </tbody>
