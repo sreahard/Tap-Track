@@ -1,109 +1,101 @@
 <!doctype html>
 <html>
 <head>
-    <% include ./partials/head %></head>
-    <body>
+  <% include ./partials/head %></head>
+  <body>
 
-        <header>
-           <% include ./partials/header %>
-       </header>
-       <div class="container">
+    <header>
+     <% include ./partials/header %>
+   </header>
+   <div class="container">
 
-        <div class="page-header text-center">
-            <div id="users"></div>
-            <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-                           
-
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-        </div>
-
-            <table>
- <!--             //    <% 
-//                 for(var i=0; i < userBeer.length; i++) { for(var r = 0; r < userBeer[i].ratings.length; r++) { 
-//                 var sum=0;
-//                 for(var i = 0; i < userBeer[i].ratings[r].length; i++){
-//                     var overall =userBeer[i].ratings[r].overall;
-//                     sum += userBeer[i].ratings[r].overall;
-
-//                 }
-//                 var average = Math.round(sum/userBeer[i].ratings[r].length); 
-//                 (console.log(overall))
-//             }
-//         }
-                %>
- -->
+    <div class="page-header text-center">
+      <div id="users"></div>
+      <h1><span class="fa fa-beer"></span> My Beers</h1>
 
 
-                    
-                    <% for(var i=0; i < userBeer.length; i++) {  
-                        var beerName = [];
-                        if(beerName.indexOf(userBeer[i].name) === -1) {
-                            beerName.push(userBeer[i].name);
+      </div>
 
-                            var sum = 0;
-                            for(var r = 0; r < userBeer[i].ratings.length; r++) { 
+    <table>
 
-    
-                            var overall = userBeer[i].ratings[r].overall;
-                            sum +=  overall;
-                            var average = Math.round(sum/userBeer[i].ratings.length);
 
-                            console.log(userBeer[i].name)
-                            console.log(userBeer[i].ratings[r].overall) 
 
-                            } %>
-                            <div class="col-sm-6 col-md-3">
-                    <div class="location-display">
-                    <div class="row">
-                   <div class="well-beer-sm">
-                   <img src="<%= userBeer[i].image %>" class="img-responsive"/>
-                   <div class="caption">
-                   <h4 class="profile"><%= beerName %></h4><br/>
-                   <p class="brewery"><%= userBeer[i].category %></p>
 
-                   <p class="brewery">
+      <% for(var i=0; i < userBeer.length; i++) {  
+
+        var loggedInUserId = user._id.toString();
+
+        var beerName = [];
+        if(beerName.indexOf(userBeer[i].name) === -1) {
+          beerName.push(userBeer[i].name);
+        }
+        var sum = 0;
+        for(var r = 0; r < userBeer[i].ratings.length; r++) { 
+          var userId = userBeer[i].ratings[r].user_id.toString();
+          var userRatings = [];
+          if (userId === loggedInUserId) { 
+            userRatings.push(userBeer[i].ratings[r].overall);
+          } 
+
+          var overall = userBeer[i].ratings[r].overall;
+          sum +=  overall;
+          var average = Math.round(sum/userBeer[i].ratings.length);
+        }
+        console.log(userRatings)
+
+
+
+        %>
+        <div class="col-sm-6 col-md-3">
+          <div class="location-display">
+            <div class="row">
+             <div class="well-beer-sm">
+               <img src="<%= userBeer[i].image %>" class="img-responsive"/>
+               <div class="caption">
+                 <h4 class="profile"><%= beerName %></h4><br/>
+                 <p class="brewery"><%= userBeer[i].category %></p>
+
+                 <p class="brewery">
                    <%= userBeer[i].abv > 0 ? ' ABV ' + userBeer[i].abv + '% / ': ''%> <%= userBeer[i].ibu%><%= userBeer[i].ibu > 0 ? ' IBU / ' : ''%><%= userBeer[i].location%>
-                   </p>
-                   <hr class="short-rule"/>                        
-                   <p class="brewery">
+                 </p>
+                 <hr class="short-rule"/>                        
+                 <p class="brewery">
                    <%=userBeer[i].brewery%>
                    <p class="rating">
-                   <% if (average === 1){ %>
-                   <i class="fa fa-star"></i>
-                   <% } if (average === 2){ %>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <% } if (average === 3){ %>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <% } if (average === 4){ %>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <% } if (average === 5){ %>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <% } %>
-                    
+                     <% if (userRatings[0] === 1){ %>
+                     <i class="fa fa-star"></i>
+                     <% } if (userRatings[0] === 2){ %>
+                     <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                     <% } if (userRatings[0] === 3){ %>
+                     <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                     <% } if (userRatings[0] === 4){ %>
+                     <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                     <% } if (userRatings[0] === 5){ %>
+                     <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                     <% } %>
+
 
                    </p>
-                   </p>
-                   </div>
-                   </div>
-                   </div>
-                   </div>
-                   </div>                   
+                 </p>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>                   
 
 
 
 
-                   <%
-                            console.log(average) 
+       <%
 
-                            } } %>
+     }  %>
 
-
-                           </table>
-                       </div>
+   </table>
+ </div>
 
 
-                                        </div>
-                                        <% include ./partials/footer %></head>
+</div>
+<% include ./partials/footer %></head>
 
-                                    </body>
-                                    </html>
+</body>
+</html>

@@ -221,7 +221,7 @@ var OnTapList = React.createClass({
      <label>Brewery</label>
      <input className="form-control" ref="brewery" defaultValue={beer.brewery}/>
      </div>
-     <button onClick={that.handleUpdate.bind(this, beer._id)} type="submit" className="btn btn-default"> Submit {beer.name} </button>
+     <button onClick={that.handleUpdate.bind(this, beer._id)} type="submit" className="btn btn-default"> Update {beer.name} </button>
      </form>
         )
 }.bind(this)); 
