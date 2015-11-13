@@ -1,20 +1,20 @@
 <nav class="navbar2 navbar-inverse " role="navigation">
     <div class="container">
         <div class="navbar-inner">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="/images/logo_wht.png" class="img-responsive"></a>
+            <a class="navbar-brand" href="/"><img src="/images/logo_wht.png" class="img-responsive logo"></a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
                 <!--                 <li> <a href="/enter_beers"><button type="button" class="btn-menu">Enter Beer</button></a></li>-->             
                 <% if (!user) { %>
 
-                <li><a><button type="button" class="btn-menu" data-toggle="modal" data-target="#loginModal">Login </button></a>/li>
+                <li><a><button type="button" class="btn-menu" data-toggle="modal" data-target="#loginModal">Login </button></a></li>
                 <li><a><button type="button" class="btn-menu" data-toggle="modal" data-target="#signupModal">Sign Up </button></a></li>
 
                 <%} else if (user.local.email === "suziequz@msn.com") { %>
