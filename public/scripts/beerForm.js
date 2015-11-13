@@ -148,7 +148,7 @@ var OnTapList = React.createClass({
       return;
     }
 
-    var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery, description: description});
+    var data = ({name: name, image: image, category: category, ibu: ibu, abv: abv, location: location, brewery: brewery, visible: visible});
 
     $.ajax({
       url: this.props.url + id,
@@ -182,6 +182,29 @@ var OnTapList = React.createClass({
       fltr: null
     })
   },
+  // showBeer: function (visible) {
+  //   this.setState({
+  //     fltr: true
+  //   })
+  // },
+  // hideBeer: function (visible) {
+  //   this.setState({
+  //     fltr: false
+  //   })
+  // },
+  // toggleVisible: function (id, visible){
+  //   var id = id;
+  //   if(visible === true){
+  //     this.setState({
+  //       beer.showBeer
+  //     })
+  //   }
+  //   if(visible === false){
+  //     this.setState({
+  //       beer.hideBeer
+  //     })
+  //   }
+  // },
   render: function() {
 
     var that = this;
@@ -240,7 +263,7 @@ var beerData = this.props.data.map(function(beer){
                       <td style={{width:"80%"}}>{beer.name}</td>
                       <td style={{width:"10%"}}><button onClick={that.toggle.bind(that, beer.name)}><i className="fa fa-pencil"></i></button></td>
                       <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-minus-circle" ></i></button></td>
-                      <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-eye" ></i></button></td>
+                      <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer.visible)}><i className="fa fa-eye" ></i></button></td>
 
                      </tr>
                    </tbody>
