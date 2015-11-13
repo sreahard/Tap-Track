@@ -240,6 +240,7 @@ var beerData = this.props.data.map(function(beer){
                       <td style={{width:"80%"}}>{beer.name}</td>
                       <td style={{width:"10%"}}><button onClick={that.toggle.bind(that, beer.name)}><i className="fa fa-pencil"></i></button></td>
                       <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-minus-circle" ></i></button></td>
+                      <td style={{width:"10%"}}><button  onClick={that.deleteClick.bind(this, beer._id)}><i className="fa fa-eye" ></i></button></td>
 
                      </tr>
                    </tbody>
